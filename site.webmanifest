@@ -1,0 +1,24 @@
+{
+  "name": "每日更新 · 方便自己",
+  "short_name": "每日更新",
+  "description": "新聞／Fin／主題／寫書每日摘要",
+  "start_url": "./index.html",
+  "display": "standalone",
+  "background_color": "#0a1020",
+  "theme_color": "#0a1020",
+  "lang": "zh-Hant",
+  "icons": [
+    {
+      "src": "icons/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "icons/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    }
+  ]
+}
