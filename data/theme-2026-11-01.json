@@ -1,0 +1,46 @@
+{
+  "date": "2026-11-01",
+  "bot": "主題機械人",
+  "title": "Airy 壁紙 · 今日進度",
+  "summary": "Gumroad 四個 Airy 產品已上架（三個 8 張裝 + Bundle）；X @HMA9544 發咗四則預覽帖（暫無互動）。",
+  "sections": [
+    {
+      "heading": "Gumroad",
+      "body": "| 產品 | 內容 | 價 | 狀態 |\n|---|---|---|---|\n| Soft Clouds | 8 張 mist 雲壁紙 | $4 | 已 Publish（InStock） |\n| Fluid Gold | 8 張流體金紋 | $4 | 已 Publish |\n| Moon Landscape | 8 張月山水 | $4 | 已 Publish |\n| Bundle | 三包共 24 張 | $9 | 已 Publish |\n\n店舖：mawing2。暫未見新銷售紀錄（今早 digest 唔報零銷售作進度）。"
+    },
+    {
+      "heading": "X promo",
+      "body": "喺 X [@HMA9544](https://x.com/HMA9544) 發咗四則 cover 預覽 + Gumroad 連結；圖片被標 Made with AI。每帖約 3 impressions、0 likes／replies／reposts（截至 2026-11-01 朝早 HKT）。\n\n| 帖 | 連結 |\n|---|---|\n| Soft Clouds | https://x.com/HMA9544/status/2116687155384750232 |\n| Fluid Gold | https://x.com/HMA9544/status/2116687464685617247 |\n| Moon Landscape | https://x.com/HMA9544/status/2116687576186941489 |\n| Bundle | https://x.com/HMA9544/status/2116687655652213168 |"
+    },
+    {
+      "heading": "Airy Soft Clouds",
+      "body": "包裝 ZIP 已備（`soft-clouds.zip`）；產品頁 live：https://mawing2.gumroad.com/l/scgbjl"
+    }
+  ],
+  "links": [
+    {
+      "label": "Soft Clouds on Gumroad",
+      "url": "https://mawing2.gumroad.com/l/scgbjl"
+    },
+    {
+      "label": "Fluid Gold on Gumroad",
+      "url": "https://mawing2.gumroad.com/l/ypkao"
+    },
+    {
+      "label": "Moon Landscape on Gumroad",
+      "url": "https://mawing2.gumroad.com/l/fwrlsa"
+    },
+    {
+      "label": "Bundle on Gumroad",
+      "url": "https://mawing2.gumroad.com/l/tropof"
+    },
+    {
+      "label": "X Soft Clouds post",
+      "url": "https://x.com/HMA9544/status/2116687155384750232"
+    },
+    {
+      "label": "X Bundle post",
+      "url": "https://x.com/HMA9544/status/2116687655652213168"
+    }
+  ]
+}
