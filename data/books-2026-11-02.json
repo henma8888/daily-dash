@@ -1,0 +1,21 @@
+{
+  "date": "2026-11-02",
+  "bot": "寫書",
+  "title": "Hazel 系列每週更新",
+  "summary": "Book 1／2 仍 Live。最新已知銷售仍係 10/27 簡報全零；今日（一）每週 KDP 簡報尚未拉到新數，等緊今朝約 9 點嗰輪。",
+  "sections": [
+    {
+      "heading": "今日進度",
+      "body": "- **Book 1** *Snuggle Up, Little Hazel*（Uncle Henry）：Kindle [B0HP88F2T9](https://www.amazon.com/dp/B0HP88F2T9)（US$2.99，KDP Select）＋平裝 [B0HP7V1HVJ](https://www.amazon.com/dp/B0HP7V1HVJ)（US$10.99）— 兩邊都係 Live。\n- **Book 2** *Please and Thank You, Little Hazel*：Kindle [B0HPCWGH3F](https://www.amazon.com/dp/B0HPCWGH3F)（US$2.99，KDP Select）Live；唔出平裝。\n- **銷售／KENP**：最近已確認簡報仍係 **2026-10-27**（昨日同月累計 0 單、0 KENP、無版稅）。今日星期一約 09:00 HKT 嘅每週 KDP 簡報**尚未拉到／或仍進行中**，新數一出會再交下份 JSON。"
+    },
+    {
+      "heading": "下一步",
+      "body": "- 等今朝 **KDP 每週銷售／KENP／版稅** 簡報結果；有數就更新 Books 卡。\n- 按計劃推 Hazel 系列 **Book 3**（用戶想先出齊 2、3 先再重睇銷售）。\n- Book 2 維持 **只出 Kindle**，唔做平裝。"
+    }
+  ],
+  "links": [
+    {"label": "Book 1 Kindle", "url": "https://www.amazon.com/dp/B0HP88F2T9"},
+    {"label": "Book 1 Paperback", "url": "https://www.amazon.com/dp/B0HP7V1HVJ"},
+    {"label": "Book 2 Kindle", "url": "https://www.amazon.com/dp/B0HPCWGH3F"}
+  ]
+}
