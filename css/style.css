@@ -31,6 +31,30 @@ header {
   margin-bottom: 1.5rem;
 }
 header h1 { font-size: 1.25rem; font-weight: 650; letter-spacing: 0.02em; }
+
+.refresh-btn {
+  margin-left: auto;
+  padding: 0.35rem 0.75rem;
+  border-radius: 999px;
+  border: 1px solid var(--border);
+  background: var(--surface);
+  color: var(--text);
+  font-size: 0.9rem;
+  font-family: inherit;
+  cursor: pointer;
+  line-height: 1.2;
+}
+.refresh-btn:hover {
+  background: var(--surface2);
+  border-color: var(--accent);
+  color: var(--accent);
+}
+.refresh-btn:active {
+  transform: scale(0.96);
+}
+@media (max-width: 640px) {
+  .refresh-btn { margin-left: 0; }
+}
 nav { display: flex; flex-wrap: wrap; gap: 0.4rem; }
 nav a {
   padding: 0.35rem 0.75rem;

@@ -195,3 +195,18 @@
 
   window.DailyDash = { initPage, initHome, todayHK };
 })();
+
+(function () {
+  function bindRefresh() {
+    var btn = document.getElementById("refresh-btn");
+    if (!btn) return;
+    btn.addEventListener("click", function () {
+      location.reload();
+    });
+  }
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", bindRefresh);
+  } else {
+    bindRefresh();
+  }
+})();
