@@ -1,0 +1,22 @@
+{
+  "date": "2026-11-02",
+  "bot": "FinBot",
+  "title": "港美股摘要 2026-11-02（港股開市前）",
+  "summary": "週一重開：夜期（11月）收 23,345（+58、高水約 51）；上交易日恒指 23,294.42（+1.46%）。隔週五美股科技大跌餘波仍在。其餘三節待稍後摘要更新。",
+  "sections": [
+    {
+      "heading": "港股開市前",
+      "body": "（11/2 開市前）上交易日（10/30）恒指 23,294.42（+1.46%）、恒科 3,754.90（+0.29%）。夜期（11月）收 23,345（+58／+0.25%、高水約 51）；日市期指報約 23,300（量少）。隔週五美股科技大跌（標普 −1.82%、納指 −2.86%；INTC／AMZN）。持倉昨收：美團 71.60、7226 2.110、3033 3.692。今日留意外圍 AI 情緒同 PMI 窗口。（來源：etnet 期指、Yahoo 昨收；資訊非投資建議）"
+    },
+    {"heading": "港股收市後", "body": "（尚未更新）"},
+    {"heading": "美股開市前", "body": "（尚未更新）"},
+    {"heading": "美股收市後", "body": "（尚未更新）"}
+  ],
+  "links": [
+    {"label": "美團 富途", "url": "https://www.futunn.com/stock/03690-HK"},
+    {"label": "7226 富途", "url": "https://www.futunn.com/etfs/07226-HK"},
+    {"label": "3033 富途", "url": "https://www.futunn.com/etfs/03033-HK"},
+    {"label": "CRCL 富途", "url": "https://www.futunn.com/stock/CRCL-US"},
+    {"label": "SPCX 富途", "url": "https://www.futunn.com/stock/SPCX-US"}
+  ]
+}
