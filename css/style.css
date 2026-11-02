@@ -1,4 +1,5 @@
 :root {
+  --base-font: 17px;
   --bg: #0f1419;
   --surface: #1a2332;
   --surface2: #243044;
@@ -11,8 +12,10 @@
   --font: "Segoe UI", "PingFang HK", "Noto Sans TC", system-ui, sans-serif;
 }
 * { box-sizing: border-box; margin: 0; padding: 0; }
+html { font-size: var(--base-font); }
 body {
   font-family: var(--font);
+  font-size: 1rem;
   background: var(--bg);
   color: var(--text);
   min-height: 100vh;
@@ -30,7 +33,7 @@ header {
   border-bottom: 1px solid var(--border);
   margin-bottom: 1.5rem;
 }
-header h1 { font-size: 1.25rem; font-weight: 650; letter-spacing: 0.02em; }
+header h1 { font-size: 1.4rem; font-weight: 650; letter-spacing: 0.02em; }
 
 .refresh-btn {
   margin-left: auto;
@@ -39,7 +42,7 @@ header h1 { font-size: 1.25rem; font-weight: 650; letter-spacing: 0.02em; }
   border: 1px solid var(--border);
   background: var(--surface);
   color: var(--text);
-  font-size: 0.9rem;
+  font-size: 0.95rem;
   font-family: inherit;
   cursor: pointer;
   line-height: 1.2;
@@ -61,7 +64,7 @@ nav a {
   border-radius: 999px;
   background: var(--surface);
   color: var(--muted);
-  font-size: 0.9rem;
+  font-size: 0.95rem;
   text-decoration: none;
   border: 1px solid transparent;
 }
@@ -71,7 +74,7 @@ nav a:hover, nav a.active {
   background: var(--surface2);
   text-decoration: none;
 }
-.meta { color: var(--muted); font-size: 0.85rem; margin-bottom: 1rem; }
+.meta { color: var(--muted); font-size: 0.92rem; margin-bottom: 1rem; }
 .cards {
   display: grid;
   gap: 1rem;
@@ -86,12 +89,12 @@ nav a:hover, nav a.active {
   flex-direction: column;
   gap: 0.5rem;
 }
-.card h2 { font-size: 1.05rem; }
-.card p { color: var(--muted); font-size: 0.92rem; flex: 1; }
+.card h2 { font-size: 1.15rem; }
+.card p { color: var(--muted); font-size: 1rem; flex: 1; }
 .card .go {
   align-self: flex-start;
   margin-top: 0.35rem;
-  font-size: 0.9rem;
+  font-size: 0.95rem;
 }
 .panel {
   background: var(--surface);
@@ -101,7 +104,7 @@ nav a:hover, nav a.active {
   margin-bottom: 1rem;
 }
 .panel h2 {
-  font-size: 1.1rem;
+  font-size: 1.2rem;
   margin-bottom: 0.35rem;
 }
 .panel .summary {
@@ -164,10 +167,17 @@ nav a:hover, nav a.active {
   border-radius: 8px;
   padding: 0.4rem 0.6rem;
   font: inherit;
+  font-size: 1rem;
 }
 footer {
   margin-top: 2rem;
   color: var(--muted);
-  font-size: 0.8rem;
+  font-size: 0.88rem;
   text-align: center;
 }
+
+.panel p, .panel li { font-size: 1rem; }
+.panel table { font-size: 0.95rem; }
+.panel th, .panel td { padding: 0.35rem 0.5rem; }
+.links a { font-size: 0.95rem; }
+.date-nav label { font-size: 0.95rem; }
