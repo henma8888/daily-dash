@@ -14,6 +14,16 @@
   <link rel="icon" type="image/png" sizes="32x32" href="icons/favicon-32.png" />
   <link rel="icon" type="image/png" sizes="48x48" href="icons/favicon-48.png" />
   <link rel="apple-touch-icon" href="apple-touch-icon.png" />
+    <script>
+(function(){
+  try {
+    var s = parseInt(localStorage.getItem("dd-font") || "17", 10);
+    if (isNaN(s)) s = 17;
+    s = Math.max(14, Math.min(22, s));
+    document.documentElement.style.setProperty("--base-font", s + "px");
+  } catch (e) {}
+})();
+  </script>
   <link rel="stylesheet" href="css/style.css" />
 </head>
 <body>
@@ -21,6 +31,10 @@
     <header>
       <h1>FinBot</h1>
       <button type="button" class="refresh-btn" id="refresh-btn" title="重新載入頁面" aria-label="重新載入">↻ F5</button>
+      <div class="font-controls" id="font-controls" aria-label="字體大小">
+        <button type="button" class="font-btn" id="font-minus" title="縮小字體" aria-label="縮小字體">A−</button>
+        <button type="button" class="font-btn" id="font-plus" title="放大字體" aria-label="放大字體">A+</button>
+      </div>
       <nav>
         <a href="index.html">總覽</a>
         <a href="news.html">新聞bot</a>

@@ -197,16 +197,59 @@
 })();
 
 (function () {
-  function bindRefresh() {
-    var btn = document.getElementById("refresh-btn");
-    if (!btn) return;
-    btn.addEventListener("click", function () {
-      location.reload();
-    });
+  var FONT_KEY = "dd-font";
+  var FONT_MIN = 14;
+  var FONT_MAX = 22;
+  var FONT_DEFAULT = 17;
+  var FONT_STEP = 1;
+
+  function clampFont(n) {
+    n = parseInt(n, 10);
+    if (isNaN(n)) n = FONT_DEFAULT;
+    return Math.max(FONT_MIN, Math.min(FONT_MAX, n));
   }
+
+  function applyFont(size) {
+    size = clampFont(size);
+    document.documentElement.style.setProperty("--base-font", size + "px");
+    try { localStorage.setItem(FONT_KEY, String(size)); } catch (e) {}
+    var minus = document.getElementById("font-minus");
+    var plus = document.getElementById("font-plus");
+    if (minus) minus.disabled = size <= FONT_MIN;
+    if (plus) plus.disabled = size >= FONT_MAX;
+    return size;
+  }
+
+  function currentFont() {
+    var raw = getComputedStyle(document.documentElement).getPropertyValue("--base-font");
+    return clampFont(parseInt(raw, 10) || FONT_DEFAULT);
+  }
+
+  function bindUi() {
+    var refresh = document.getElementById("refresh-btn");
+    if (refresh) {
+      refresh.addEventListener("click", function () { location.reload(); });
+    }
+    var minus = document.getElementById("font-minus");
+    var plus = document.getElementById("font-plus");
+    if (minus) {
+      minus.addEventListener("click", function () {
+        applyFont(currentFont() - FONT_STEP);
+      });
+    }
+    if (plus) {
+      plus.addEventListener("click", function () {
+        applyFont(currentFont() + FONT_STEP);
+      });
+    }
+    var saved = FONT_DEFAULT;
+    try { saved = localStorage.getItem(FONT_KEY); } catch (e) {}
+    applyFont(saved != null ? saved : FONT_DEFAULT);
+  }
+
   if (document.readyState === "loading") {
-    document.addEventListener("DOMContentLoaded", bindRefresh);
+    document.addEventListener("DOMContentLoaded", bindUi);
   } else {
-    bindRefresh();
+    bindUi();
   }
 })();
