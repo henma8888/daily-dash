@@ -1,0 +1,31 @@
+{
+  "date": "2026-11-02",
+  "bot": "新聞bot",
+  "title": "香港流感天氣醫療朝早摘要（2026-11-02）",
+  "summary": "大致天晴偏熱潮濕；觀塘 AQHI 3（低）；流感季節仍高於基線但活躍度持續回落，10/31 再錄兒童甲流重症；中醫方面留意「醫承通／醫健通」對接進度與 11 月底國際中醫藥大會。",
+  "sections": [
+    {
+      "heading": "weather",
+      "body": "| 項目 | 內容 |\n| --- | --- |\n| 日期 | 2026-11-02（一）亞洲／香港 |\n| 早上實況（天文台 08:02） | 氣溫 **27°C**，相對濕度 **80%**；觀塘約 26°C |\n| 今日預測 | 大致天晴，日間市區最高約 **31°C**（新界再高 1–2°C）；稍後部分時間多雲，有一兩陣微雨；輕微至和緩偏東風 |\n| 展望 | 未來一兩日風勢較大 |\n| 來源 | [HKO 天氣稿 035](https://www.info.gov.hk/gia/wr/202611/02/P2026110200114.htm)／[溫度濕度 053](https://www.info.gov.hk/gia/wr/202611/02/P2026110200151.htm) |"
+    },
+    {
+      "heading": "aqhi_kwun_tong",
+      "body": "| 項目 | 內容 |\n| --- | --- |\n| **觀塘 AQHI（主）** | **3**（低／好）— 公布時間約 08:30（亞洲／香港） |\n| 其他簡況 | 多數一般／路邊站 2–3（低）；東涌、沙田、塔門 2 |\n| 分級（EPD） | 1–3 低（好）／4–6 中（普通）／7 高／8–10 甚高／10+ 嚴重 |\n| 來源 | [data.gov.hk AQHI CSV](https://dashboard.data.gov.hk/api/aqhi-individual?format=csv)／[aqhi.gov.hk](https://www.aqhi.gov.hk) |"
+    },
+    {
+      "heading": "flu",
+      "body": "| 項目 | 內容 |\n| --- | --- |\n| 季節狀態 | 仍處流感季節；活躍度**持續回落**，但仍高於基線 |\n| 第 43 周（10/18–24） | 呼吸道樣本流感陽性 **7.69%**（上周 10.04%）；以甲型 **H1** 為主（約 94%） |\n| 入院／爆發 | 公院流感入院率 **0.39**/萬人（低強度，仍高於基線 0.27）；學校／院舍爆發 37 宗（216 人），較上周 62 宗減少 |\n| 成人重症（第 43 周） | 43 宗 ICU／死亡相關個案（含 33 宗死亡），較上周 53／38 下降 |\n| 兒童重症（最新新聞） | **10/31**：7 歲女童甲型 H1 併發敗血性休克，危殆；本季兒童嚴重個案累計 **28**（20 出院、2 穩定、4 危殆、2 死亡） |\n| 臨床提示（11/1） | 關日華：今季部分患者病情轉差較快；病發首 48 小時為抗病毒關鍵窗 |\n| 來源 | [Flu Express 第43期 PDF](https://www.chp.gov.hk/files/pdf/covid_flux_week43_29_10_2026_chi.pdf)／[CHP 10/31 新聞稿](https://www.info.gov.hk/gia/general/202610/31/P2026103100371.htm)／[RTHK 11/1](https://news.rthk.hk/rthk/ch/component/k2/1876153-20261101.htm) |"
+    },
+    {
+      "heading": "medical",
+      "body": "| 項目 | 重點 |\n| --- | --- |\n| 中醫診所電子化 | 「醫承通」四年來僅約百間診所完成安裝；醫衞局指年底前與主要供應商技術對接醫健通，並計劃分階段要求中醫加入醫健通／基層醫療指南才可參加資助計劃（設寬限期）— [Now 新聞](https://news.now.com/home/local/player?newsId=667363) |\n| 中醫藥國際大會 | **11/25–28** 香港會展「2026香港國際中醫藥大會」（藥香無界·港通全球），含博覽、國際峰會、研討及義診 — [文匯報](https://www.wenweipo.com/a/202610/16/AP6ad2182be4b01d54a2876fa0.html) |\n| 政策／立法會 | 《專題快訊》綜述藥械監管改革與《中醫藥發展藍圖》；議員促擴《港標》、增加中醫醫院資助名額 — [政府新聞稿 10/26](https://www.info.gov.hk/gia/general/202610/26/P2026102600547.htm) |"
+    }
+  ],
+  "links": [
+    {"label": "天文台今日天氣預報", "url": "https://www.info.gov.hk/gia/wr/202611/02/P2026110200114.htm"},
+    {"label": "觀塘等站 AQHI（CSV）", "url": "https://dashboard.data.gov.hk/api/aqhi-individual?format=csv"},
+    {"label": "CHP Flu Express 第43期", "url": "https://www.chp.gov.hk/files/pdf/covid_flux_week43_29_10_2026_chi.pdf"},
+    {"label": "CHP 兒童流感嚴重個案（10/31）", "url": "https://www.info.gov.hk/gia/general/202610/31/P2026103100371.htm"},
+    {"label": "Daily dash 網站", "url": "https://henma8888.github.io/daily-dash/"}
+  ]
+}
