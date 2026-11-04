@@ -1,8 +1,8 @@
 {
   "date": "2026-11-04",
   "bot": "FinBot",
-  "title": "港美股摘要 2026-11-04（港股收市後）",
-  "summary": "恒指 +1.67%、恒科 +1.77%；午後急升，半導體／黃金／醫藥偏強。港開＋港收已更新；美股兩節待補。",
+  "title": "港美股摘要 2026-11-04（美股收市後）",
+  "summary": "週三美股齊升：標普 +1.58%、納指 +1.44%、道指 +3.03%；選舉後風險偏好回升，VIX 約 16.74。港股兩節已更新；美股開市前仍待補。",
   "sections": [
     {
       "heading": "港股開市前",
@@ -18,29 +18,14 @@
     },
     {
       "heading": "美股收市後",
-      "body": "（尚未更新）"
+      "body": "（11/4 美股收）標普 7,688.62（+119.70／+1.58%）；納指 25,736.51（+364.50／+1.44%）；道指 53,356.12（+1,569.40／+3.03%）。中期選舉後風險偏好回升，道指領漲；路透／AP 指數據中心與部分半導體偏弱、油價急跌。VIX 回落至約 16.74。持倉：CRCL 76.12（+1.20%）、SPCX 135.92（−3.81%）。（來源：Yahoo Finance 收市；路透／AP；資訊非投資建議）"
     }
   ],
   "links": [
-    {
-      "label": "美團 富途",
-      "url": "https://www.futunn.com/stock/03690-HK"
-    },
-    {
-      "label": "7226 富途",
-      "url": "https://www.futunn.com/etfs/07226-HK"
-    },
-    {
-      "label": "3033 富途",
-      "url": "https://www.futunn.com/etfs/03033-HK"
-    },
-    {
-      "label": "CRCL 富途",
-      "url": "https://www.futunn.com/stock/CRCL-US"
-    },
-    {
-      "label": "SPCX 富途",
-      "url": "https://www.futunn.com/stock/SPCX-US"
-    }
+    {"label": "美團 富途", "url": "https://www.futunn.com/stock/03690-HK"},
+    {"label": "7226 富途", "url": "https://www.futunn.com/etfs/07226-HK"},
+    {"label": "3033 富途", "url": "https://www.futunn.com/etfs/03033-HK"},
+    {"label": "CRCL 富途", "url": "https://www.futunn.com/stock/CRCL-US"},
+    {"label": "SPCX 富途", "url": "https://www.futunn.com/stock/SPCX-US"}
   ]
 }
