@@ -214,3 +214,32 @@ footer {
 .panel th, .panel td { padding: 0.35rem 0.5rem; }
 .links a { font-size: 0.95rem; }
 .date-nav label { font-size: 0.95rem; }
+
+.card-actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.65rem;
+  margin-top: 0.35rem;
+}
+.card .go { margin-top: 0; align-self: center; }
+a.open-bot {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.3rem 0.7rem;
+  border-radius: 999px;
+  border: 1px solid var(--accent2);
+  color: var(--accent2);
+  background: transparent;
+  font-size: 0.85rem;
+  font-weight: 600;
+  text-decoration: none;
+  line-height: 1.2;
+}
+a.open-bot:hover {
+  background: rgba(107, 207, 142, 0.12);
+  text-decoration: none;
+}
+header a.open-bot {
+  margin-right: 0.25rem;
+}

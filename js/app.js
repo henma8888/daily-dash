@@ -2,11 +2,30 @@
   // Public JSON on GitHub (NAS page can stay; also works on GitHub Pages)
   const DATA_BASE = "https://raw.githubusercontent.com/henma8888/daily-dash/main/data";
   const BOTS = {
-    news: { file: "news", label: "新聞bot", page: "news.html" },
-    fin: { file: "fin", label: "FinBot", page: "fin.html" },
-    theme: { file: "theme", label: "主題機械人", page: "theme.html" },
-    book: { file: "books", label: "寫書", page: "book.html" },
+    news: { file: "news", label: "新聞bot", page: "news.html", agentId: "530c1ee2-873b-4a02-8789-f8d274ae4302" },
+    fin: { file: "fin", label: "FinBot", page: "fin.html", agentId: "5655b93e-b8ef-40dc-bec2-c4fae057c98a" },
+    theme: { file: "theme", label: "主題機械人", page: "theme.html", agentId: "6518efec-a1c0-47e6-bbf6-deeda5bd738d" },
+    book: { file: "books", label: "寫書", page: "book.html", agentId: "a265847f-d290-4f45-8540-7201646bdd80" },
   };
+
+  function agentHref(id) {
+    return id ? "grokbot://app/v1/agent?id=" + encodeURIComponent(id) : "";
+  }
+
+  function wireOpenBot(botKey) {
+    const b = BOTS[botKey];
+    if (!b || !b.agentId) return;
+    const header = document.querySelector("header");
+    if (!header || header.querySelector(".open-bot")) return;
+    const a = document.createElement("a");
+    a.className = "open-bot";
+    a.href = agentHref(b.agentId);
+    a.textContent = "開 bot";
+    a.title = "喺 Grok Bot App 打開「" + b.label + "」對話";
+    const h1 = header.querySelector("h1");
+    if (h1 && h1.nextSibling) header.insertBefore(a, h1.nextSibling);
+    else header.appendChild(a);
+  }
 
   function todayHK() {
     return new Intl.DateTimeFormat("en-CA", {
@@ -150,6 +169,7 @@
   }
 
   async function initPage(botKey) {
+    wireOpenBot(botKey);
     const date = qs("date") || todayHK();
     wireDatePicker(date);
     setDateParam(date);
@@ -182,11 +202,17 @@
           title = data.title || b.label;
           summary = data.summary || "已有更新";
         } catch (_) {}
+        const openBot = b.agentId
+          ? `<a class="open-bot" href="${agentHref(b.agentId)}" title="喺 Grok Bot App 打開對話">開 bot</a>`
+          : "";
         return `
           <div class="card">
             <h2>${escapeHtml(title)}</h2>
             <p>${escapeHtml(summary)}</p>
-            <a class="go" href="${b.page}?date=${encodeURIComponent(date)}">打開 ${escapeHtml(b.label)} →</a>
+            <div class="card-actions">
+              <a class="go" href="${b.page}?date=${encodeURIComponent(date)}">睇內容 →</a>
+              ${openBot}
+            </div>
           </div>`;
       })
     );
