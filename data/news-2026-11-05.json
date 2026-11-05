@@ -1,0 +1,58 @@
+{
+  "date": "2026-11-05",
+  "bot": "新聞bot",
+  "title": "2026-11-05 香港流感・天氣・醫療朝早摘要",
+  "summary": "天文台上午9時約27°C、濕度82%、間有陽光；觀塘AQHI 3（低）；流感自11月2日後無重大新公布，活躍度仍高於基線；中醫藥發展基金11月15日人才培訓分享會（CME 3分）截止報名11月6日。",
+  "sections": [
+    {
+      "heading": "weather",
+      "body": "| 項目 | 內容 |\n| --- | --- |\n| 時間 | 2026-11-05 上午9時（天文台） |\n| 氣溫 | 27°C（觀塘 27°C；午夜至上午最低 26.1°C） |\n| 相對濕度 | 82% |\n| 天氣 | 間有陽光；紫外線強度低 |\n| 分區參考 | 將軍澳 26°C；黃大仙／深水埗約 28°C |\n| 來源 | [天文台天氣報告](https://www.weather.gov.hk/textonly/v2/forecast/chinesewx2.htm)・[分區天氣](https://www.weather.gov.hk/hko/textonly/v2/forecast/text_readings_c.htm) |"
+    },
+    {
+      "heading": "aqhi_kwun_tong",
+      "body": "| 項目 | 內容 |\n| --- | --- |\n| 觀塘 AQHI | **3**（低／好）— 2026-11-05 07:00（EPD 07:30 公布） |\n| 分級參考 | 1–3 低（好）／4–6 中（普通）／7 高／8–10 甚高／10+ 嚴重（EPD 官方分級） |\n| 其他區 | 中西區、東區一般站及旺角路邊為 **4（中）**，稍高；其餘多數一般站約 2–3（低） |\n| 預報 | 上午一般／路邊：低至中；下午傾向中 |\n| 忠告 | 「低」水平：一般可如常活動 |\n| 來源 | [EPD AQHI 07:30 公布](https://www.info.gov.hk/gia/api/202611/05/P2026110500150.htm)・[AQHI](https://www.aqhi.gov.hk/) |"
+    },
+    {
+      "heading": "flu",
+      "body": "| 項目 | 內容 |\n| --- | --- |\n| 今日更新 | 自**11月2日**後無重大新流感／兒童嚴重個案官方公布 |\n| 最近個案 | 11月2日：7歲女童甲型（H1）流感併發嚴重肺炎，兒童深切治療部，情況嚴重；未接種本季疫苗 |\n| 本季兒童嚴重累計 | **29宗**（20已出院、2穩定、1嚴重、4危殆、**2死亡**） |\n| 活躍程度 | 自6月下旬進入流感季節；活躍程度**有下降跡象**，但仍**高於基線**；以甲型（H1）為主 |\n| 臨床提示 | 兒童病情可急轉；呼吸急促、喘鳴、唇紫、胸痛、神智模糊、持續發燒或抽搐—立刻急症室 |\n| 疫苗 | 2026/27 計劃已展開；長者即使無長期病亦應接種；未接種者宜盡快接種 |\n| 來源 | [CHP 11月2日新聞稿](https://www.info.gov.hk/gia/general/202611/02/P2026110200463.htm)・[流感速遞](https://www.chp.gov.hk/tc/resources/29/100148.html)・[長者接種提醒（11月3日報道）](https://www.hkcd.com/hkcdweb/content/2026/11/03/content_8783288.html) |"
+    },
+    {
+      "heading": "medical",
+      "body": "| 項目 | 內容 |\n| --- | --- |\n| 中醫藥培訓（優先） | **中醫藥發展基金**：11月15日（日）上午10時–下午1時「香港中醫藥人才培訓項目分享會」（第一場），主題含中醫皮膚科、中藥製劑質量控制、傳統炮製應用；註冊中醫可獲 CME 3分（CME-IP0064-0016）。實體（將軍澳中醫醫院）+ Zoom；**報名截止 11月6日**。 |\n| 中醫醫院 | 12月11日起擴展**24小時住院服務**；適合病情複雜、需持續監察或密集治療者，可經院內門診或其他機構轉介。 |\n| 來源 | [中醫藥發展基金分享會](https://www.cmdevfund.hk/tc/news-and-events/2026年香港中醫藥人才培訓項目分享會-第一場/)・[中醫醫院24小時住院新聞稿](https://www.cmhhk.org.hk/tc/news_and_announcement/press_release/service_expansion_24_hour_inpatient_services/) |"
+    }
+  ],
+  "links": [
+    {
+      "label": "天文台天氣報告",
+      "url": "https://www.weather.gov.hk/textonly/v2/forecast/chinesewx2.htm"
+    },
+    {
+      "label": "環保署 AQHI 公布（07:30）",
+      "url": "https://www.info.gov.hk/gia/api/202611/05/P2026110500150.htm"
+    },
+    {
+      "label": "AQHI 官網",
+      "url": "https://www.aqhi.gov.hk/"
+    },
+    {
+      "label": "CHP 兒童流感嚴重個案（11月2日）",
+      "url": "https://www.info.gov.hk/gia/general/202611/02/P2026110200463.htm"
+    },
+    {
+      "label": "CHP 流感速遞",
+      "url": "https://www.chp.gov.hk/tc/resources/29/100148.html"
+    },
+    {
+      "label": "中醫藥發展基金分享會（11月15日）",
+      "url": "https://www.cmdevfund.hk/tc/news-and-events/2026年香港中醫藥人才培訓項目分享會-第一場/"
+    },
+    {
+      "label": "中醫醫院24小時住院",
+      "url": "https://www.cmhhk.org.hk/tc/news_and_announcement/press_release/service_expansion_24_hour_inpatient_services/"
+    },
+    {
+      "label": "Daily dash",
+      "url": "https://henma8888.github.io/daily-dash/"
+    }
+  ]
+}
