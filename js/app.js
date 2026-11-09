@@ -2,10 +2,16 @@
   // Public JSON on GitHub (NAS page can stay; also works on GitHub Pages)
   const DATA_BASE = "https://raw.githubusercontent.com/henma8888/daily-dash/main/data";
   const BOTS = {
-    news: { file: "news", label: "新聞bot", page: "news.html", agentId: "530c1ee2-873b-4a02-8789-f8d274ae4302" },
-    fin: { file: "fin", label: "FinBot", page: "fin.html", agentId: "5655b93e-b8ef-40dc-bec2-c4fae057c98a" },
-    theme: { file: "theme", label: "主題機械人", page: "theme.html", agentId: "6518efec-a1c0-47e6-bbf6-deeda5bd738d" },
-    book: { file: "books", label: "寫書", page: "book.html", agentId: "a265847f-d290-4f45-8540-7201646bdd80" },
+    news: { file: "news", label: "新聞bot", page: "index.html", agentId: "530c1ee2-873b-4a02-8789-f8d274ae4302" },
+  };
+
+  const HEADINGS = {
+    weather: "天氣",
+    aqhi: "空氣質素",
+    aqhi_kwun_tong: "觀塘空氣質素",
+    flu: "流感",
+    medical: "醫療",
+    news: "新聞",
   };
 
   function agentHref(id) {
@@ -34,6 +40,25 @@
       month: "2-digit",
       day: "2-digit",
     }).format(new Date());
+  }
+
+  /** Move a YYYY-MM-DD calendar date by whole days. Independent of the browser zone. */
+  function shiftDate(iso, days) {
+    const m = /^(\d{4})-(\d{2})-(\d{2})$/.exec(String(iso || ""));
+    if (!m || !Number.isFinite(days)) return null;
+    const utc = new Date(Date.UTC(Number(m[1]), Number(m[2]) - 1, Number(m[3]) + days));
+    const y = utc.getUTCFullYear();
+    const mo = String(utc.getUTCMonth() + 1).padStart(2, "0");
+    const d = String(utc.getUTCDate()).padStart(2, "0");
+    return y + "-" + mo + "-" + d;
+  }
+
+  function goToDate(date) {
+    if (!/^\d{4}-\d{2}-\d{2}$/.test(String(date || ""))) return;
+    const u = new URL(location.href);
+    if (u.searchParams.get("date") === date) return;
+    u.searchParams.set("date", date);
+    location.assign(u.href);
   }
 
   function qs(name) {
@@ -69,6 +94,294 @@
       .replace(/</g, "&lt;")
       .replace(/>/g, "&gt;")
       .replace(/"/g, "&quot;");
+  }
+
+  function stripMd(s) {
+    return String(s == null ? "" : s)
+      .replace(/\[([^\]]+)\]\((https?:[^)\s]+)\)/g, "$1")
+      .replace(/\*\*/g, "")
+      .replace(/`/g, "");
+  }
+
+  function normalizeUnits(s) {
+    return String(s)
+      .replace(/\u00a0/g, " ")
+      .replace(/℃/g, "°C")
+      .replace(/％/g, "%");
+  }
+
+  function plain(s) {
+    return normalizeUnits(stripMd(s)).replace(/\s+/g, " ").trim();
+  }
+
+  function parseTableRows(md) {
+    const lines = String(md || "").replace(/\r\n/g, "\n").split("\n");
+    const rows = [];
+    for (let i = 0; i < lines.length; i++) {
+      if (!lines[i].trim().startsWith("|")) continue;
+      if (i + 1 >= lines.length || !/^\s*\|?\s*:?-/.test(lines[i + 1])) continue;
+      i += 2;
+      while (i < lines.length && lines[i].trim().startsWith("|")) {
+        const cells = lines[i]
+          .trim()
+          .replace(/^\|/, "")
+          .replace(/\|$/, "")
+          .split("|")
+          .map((c) => c.trim());
+        if (cells.length >= 2) {
+          rows.push({ label: cells[0], value: cells.slice(1).join(" | ") });
+        }
+        i++;
+      }
+      i--;
+    }
+    return rows;
+  }
+
+  function findSection(data, re) {
+    return (data.sections || []).find((s) => re.test(String(s.heading || "")));
+  }
+
+  function shortNote(s, max) {
+    const t = plain(s).split(/[；;。，,]/)[0].trim();
+    if (!t) return "";
+    return t.length > max ? t.slice(0, max - 1) + "…" : t;
+  }
+
+  function formatMeasure(raw) {
+    if (raw == null || raw === "") return null;
+    const text = String(raw).trim();
+    if (/[–\-—~～]/.test(text)) return text.replace(/\s+/g, "");
+    const n = Number(text);
+    if (!Number.isFinite(n)) return text;
+    return Number.isInteger(n) ? String(n) : String(Math.round(n * 10) / 10);
+  }
+
+  /** Observatory temperature: prefer 氣溫 / 天文台, skip 最高 and 最低. */
+  function firstTemp(text) {
+    const src = plain(text);
+    const re = /(\d+(?:\.\d+)?)\s*°\s*C/gi;
+    const hits = [];
+    let m;
+    while ((m = re.exec(src))) {
+      const pre = src.slice(Math.max(0, m.index - 8), m.index);
+      let score = 0;
+      if (/氣溫/.test(pre)) score += 5;
+      if (/天文台/.test(pre)) score += 3;
+      if (/現時|實況/.test(pre)) score += 2;
+      if (/觀塘/.test(pre) && !/氣溫|天文台/.test(pre)) score -= 2;
+      if (/最高/.test(pre)) score -= 6;
+      if (/最低/.test(pre)) score -= 6;
+      if (/預測|展望/.test(pre)) score -= 3;
+      hits.push({ n: m[1], score, idx: m.index });
+    }
+    if (!hits.length) return null;
+    hits.sort((a, b) => b.score - a.score || a.idx - b.idx);
+    return hits[0].n;
+  }
+
+  function firstHumidity(text) {
+    const src = plain(text);
+    const at = src.search(/濕度/);
+    if (at < 0) return null;
+    const scope = src.slice(at, at + 28);
+    const range = scope.match(/(\d+(?:\.\d+)?)\s*[–\-—~～]\s*(\d+(?:\.\d+)?)\s*%/);
+    if (range) return range[1] + "–" + range[2];
+    const single = scope.match(/(\d+(?:\.\d+)?)\s*%/);
+    return single ? single[1] : null;
+  }
+
+  function clampAqhi(raw) {
+    const n = Number(raw);
+    if (!Number.isFinite(n) || n < 1 || n > 12) return null;
+    return n;
+  }
+
+  /** 觀塘 AQHI index. Ignores band ranges (1–3 / 4–6) and years. */
+  function aqhiNumber(text) {
+    let src = plain(text);
+    src = src.replace(/\d+\s*[–\-—~～至]\s*\d+/g, " ");
+    src = src.replace(/\b20\d{2}\b/g, " ");
+    const plus = src.match(/(?:AQHI|觀塘)[^0-9]{0,30}(\d{1,2})\s*\+/i);
+    if (plus) {
+      const n = clampAqhi(plus[1]);
+      if (n) return { n, plus: true };
+    }
+    const anchored = src.match(/(?:AQHI|觀塘)[^0-9]{0,30}(\d{1,2})/i);
+    if (anchored) {
+      const n = clampAqhi(anchored[1]);
+      if (n) return { n, plus: false };
+    }
+    const lead = src.match(/^\s*(\d{1,2})\s*(\+)?/);
+    if (lead) {
+      const n = clampAqhi(lead[1]);
+      if (n) return { n, plus: Boolean(lead[2]) };
+    }
+    return null;
+  }
+
+  function aqhiBand(n) {
+    if (n == null || !Number.isFinite(n)) return { key: "unknown", label: "—" };
+    if (n <= 3) return { key: "low", label: "低" };
+    if (n <= 6) return { key: "mid", label: "中" };
+    return { key: "high", label: "高" };
+  }
+
+  function optionalFields(data) {
+    const f = data && data.fields && typeof data.fields === "object" ? data.fields : null;
+    if (!f) return {};
+    const out = {};
+    const temp = f.temperature != null ? f.temperature : f.temp;
+    const humidity = f.humidity != null ? f.humidity : f.rh;
+    const aqhi = f.aqhi != null ? f.aqhi : f.aqhi_kwun_tong;
+    if (temp != null && temp !== "") out.temp = formatMeasure(String(temp).replace(/°\s*C/gi, ""));
+    if (humidity != null && humidity !== "") out.humidity = formatMeasure(String(humidity).replace(/%/g, ""));
+    if (aqhi != null && aqhi !== "") {
+      const text = String(aqhi);
+      const plus = /\+/.test(text);
+      const n = clampAqhi(text.replace(/[^\d.]/g, ""));
+      if (n) out.aqhi = { n, plus };
+    }
+    return out;
+  }
+
+  function extractMetrics(data) {
+    const empty = {
+      temp: null,
+      humidity: null,
+      condition: "",
+      aqhi: null,
+      aqhiDetail: "",
+      band: aqhiBand(null),
+    };
+    if (!data) return empty;
+
+    const weather = findSection(data, /weather|天氣/i);
+    const aqhiSec = findSection(data, /aqhi|空氣/i);
+    const weatherRows = weather ? parseTableRows(weather.body) : [];
+    const aqhiRows = aqhiSec ? parseTableRows(aqhiSec.body) : [];
+
+    let temp = null;
+    const tempRows = weatherRows
+      .map((r, idx) => {
+        const label = plain(r.label);
+        const value = plain(r.value);
+        const blob = label + " " + value;
+        let score = 0;
+        if (/氣溫/.test(label)) score += 6;
+        else if (/氣溫/.test(value)) score += 4;
+        if (/°\s*C/i.test(blob)) score += 1;
+        if (/實況|現時/.test(blob)) score += 2;
+        if (/預測|展望|風|來源|日期/.test(label) && !/氣溫/.test(label)) score -= 5;
+        return { blob, score, idx };
+      })
+      .filter((r) => r.score > 0 && /°\s*C/i.test(r.blob))
+      .sort((a, b) => b.score - a.score || a.idx - b.idx);
+    if (tempRows.length) temp = firstTemp(tempRows[0].blob);
+    if (!temp && weather) temp = firstTemp(weather.body);
+    if (!temp && data.summary) temp = firstTemp(data.summary);
+
+    let humidity = null;
+    const humidRows = weatherRows.filter((r) => /濕度/.test(plain(r.label) + " " + plain(r.value)));
+    const humidBlob = humidRows.map((r) => plain(r.label) + " " + plain(r.value)).join(" ");
+    if (humidBlob) humidity = firstHumidity(humidBlob);
+    if (!humidity && weather) humidity = firstHumidity(weather.body);
+    if (!humidity && data.summary) humidity = firstHumidity(data.summary);
+
+    const sky =
+      weatherRows.find((r) => /^天氣/.test(plain(r.label))) ||
+      weatherRows.find((r) => /今日天氣|今日預測|天氣概況|概況/.test(plain(r.label)));
+    const condition = sky ? shortNote(sky.value, 42) : "";
+
+    let aqhi = null;
+    let aqhiDetail = "";
+    const aqhiRanked = aqhiRows
+      .map((r, idx) => {
+        const label = plain(r.label);
+        const value = plain(r.value);
+        let score = 0;
+        if (/觀塘/.test(label)) score += 5;
+        if (/AQHI/i.test(label)) score += 3;
+        if (/觀塘/.test(value)) score += 1;
+        if (/分級|其他|預報|忠告|來源|預測/.test(label)) score -= 6;
+        return { label, value, score, idx };
+      })
+      .filter((r) => r.score > 0)
+      .sort((a, b) => b.score - a.score || a.idx - b.idx);
+    if (aqhiRanked.length) {
+      const row = aqhiRanked[0];
+      aqhi = aqhiNumber(row.label + " " + row.value);
+      const paren = row.value.match(/（([^）]+)）/);
+      if (paren) aqhiDetail = shortNote(paren[1], 24);
+    }
+    if (!aqhi && aqhiSec) aqhi = aqhiNumber(aqhiSec.body);
+    if (!aqhi && data.summary) aqhi = aqhiNumber(data.summary);
+
+    const override = optionalFields(data);
+    if (override.temp) temp = override.temp;
+    if (override.humidity) humidity = override.humidity;
+    if (override.aqhi) aqhi = override.aqhi;
+
+    const band = aqhiBand(aqhi ? aqhi.n : null);
+    return {
+      temp: formatMeasure(temp),
+      humidity: formatMeasure(humidity),
+      condition,
+      aqhi,
+      aqhiDetail,
+      band,
+    };
+  }
+
+  function metricCard(opts) {
+    const missing = opts.value == null || opts.value === "";
+    const valueHtml = missing
+      ? `<span class="metric-missing">—</span>`
+      : `${escapeHtml(opts.value)}${opts.unit ? `<span class="metric-unit">${escapeHtml(opts.unit)}</span>` : ""}${
+          opts.badge ? `<span class="metric-badge">${escapeHtml(opts.badge)}</span>` : ""
+        }`;
+    const compact = !missing && String(opts.value).length > 3 ? " compact" : "";
+    return `
+      <article class="metric ${opts.className || ""}"${opts.level ? ` data-level="${escapeHtml(opts.level)}"` : ""}>
+        <h2 class="metric-label">${escapeHtml(opts.label)}</h2>
+        <p class="metric-value${compact}" aria-label="${escapeHtml(opts.aria)}">${valueHtml}</p>
+        <p class="metric-note">${opts.note ? escapeHtml(opts.note) : ""}</p>
+      </article>`;
+  }
+
+  function renderMetrics(data) {
+    const m = extractMetrics(data);
+    const aqhiText = m.aqhi ? String(m.aqhi.n) + (m.aqhi.plus ? "+" : "") : null;
+    const aqhiClass = m.aqhi ? "metric-aqhi aqhi-" + m.band.key : "metric-aqhi";
+    const aqhiNote = m.aqhiDetail || (m.aqhi ? "觀塘" : "未有觀塘 AQHI");
+    return `
+      <section class="metrics" aria-label="天氣同空氣質素">
+        ${metricCard({
+          className: "metric-temp",
+          label: "氣溫",
+          value: m.temp,
+          unit: m.temp ? "°C" : "",
+          note: m.condition || (m.temp ? "天文台" : "未有氣溫"),
+          aria: m.temp ? "氣溫 " + m.temp + " 度" : "未有氣溫",
+        })}
+        ${metricCard({
+          className: "metric-humidity",
+          label: "濕度",
+          value: m.humidity,
+          unit: m.humidity ? "%" : "",
+          note: m.humidity ? "相對濕度" : "未有濕度",
+          aria: m.humidity ? "相對濕度 " + m.humidity + " %" : "未有濕度",
+        })}
+        ${metricCard({
+          className: aqhiClass,
+          level: m.band.key,
+          label: "觀塘 AQHI",
+          value: aqhiText,
+          badge: m.aqhi ? m.band.label : "",
+          note: aqhiNote,
+          aria: m.aqhi ? "觀塘空氣質素指數 " + aqhiText + "，" + m.band.label : "未有觀塘空氣質素指數",
+        })}
+      </section>`;
   }
 
   /** Lightweight markdown: tables, bold, links, line breaks */
@@ -119,9 +432,15 @@
 
   function inlineHtml(s) {
     let t = escapeHtml(s);
-    t = t.replace(/\[([^\]]+)\]\((https?:[^)\s]+)\)/g, '<a href="$2" target="_blank" rel="noopener">$1</a>');
+    t = t.replace(/\[([^\]]+)\]\((https?:[^)\s]+)\)/g, '<a href="$2" target="_blank" rel="noopener noreferrer">$1</a>');
     t = t.replace(/\*\*([^*]+)\*\*/g, "<strong>$1</strong>");
     return t;
+  }
+
+  function headingLabel(heading) {
+    const key = String(heading || "").trim();
+    if (HEADINGS[key]) return HEADINGS[key];
+    return key.replace(/_/g, " ");
   }
 
   function renderReport(data, mount) {
@@ -135,18 +454,19 @@
       .map(
         (s) => `
       <div class="section">
-        <h3>${escapeHtml(s.heading || "")}</h3>
+        <h3>${escapeHtml(headingLabel(s.heading || ""))}</h3>
         <div class="body">${renderBody(s.body || "")}</div>
       </div>`
       )
       .join("");
     const links = (data.links || [])
       .map((l) => {
-        if (typeof l === "string") return `<a href="${escapeHtml(l)}" target="_blank" rel="noopener">${escapeHtml(l)}</a>`;
-        return `<a href="${escapeHtml(l.url || "#")}" target="_blank" rel="noopener">${escapeHtml(l.label || l.url || "連結")}</a>`;
+        if (typeof l === "string") return `<a href="${escapeHtml(l)}" target="_blank" rel="noopener noreferrer">${escapeHtml(l)}</a>`;
+        return `<a href="${escapeHtml(l.url || "#")}" target="_blank" rel="noopener noreferrer">${escapeHtml(l.label || l.url || "連結")}</a>`;
       })
       .join("");
     el.innerHTML = `
+      ${renderMetrics(data)}
       <article class="panel">
         <h2>${escapeHtml(data.title || "")}</h2>
         <p class="meta">${escapeHtml(data.bot || "")} · ${escapeHtml(data.date || "")}</p>
@@ -158,68 +478,57 @@
 
   function wireDatePicker(date) {
     const input = document.getElementById("date-picker");
-    if (!input) return;
-    input.value = date;
-    input.addEventListener("change", () => {
-      const d = input.value;
-      if (!d) return;
-      setDateParam(d);
-      location.reload();
-    });
+    if (input) {
+      input.value = date;
+      input.addEventListener("change", () => {
+        if (input.value) goToDate(input.value);
+      });
+    }
+    const prev = document.getElementById("date-prev");
+    const next = document.getElementById("date-next");
+    const todayBtn = document.getElementById("date-today");
+    if (prev) prev.addEventListener("click", () => goToDate(shiftDate(date, -1)));
+    if (next) next.addEventListener("click", () => goToDate(shiftDate(date, 1)));
+    if (todayBtn) {
+      const onToday = date === todayHK();
+      todayBtn.classList.toggle("is-today", onToday);
+      todayBtn.setAttribute("aria-current", onToday ? "date" : "false");
+      todayBtn.addEventListener("click", () => goToDate(todayHK()));
+    }
   }
 
   async function initPage(botKey) {
+    if (!BOTS[botKey]) botKey = "news";
     wireOpenBot(botKey);
     const date = qs("date") || todayHK();
     wireDatePicker(date);
     setDateParam(date);
     const meta = document.getElementById("page-meta");
     if (meta) meta.textContent = `日期：${date}（香港時間）`;
+    const report = document.getElementById("report");
     try {
       const data = await loadJson(botKey, date);
       renderReport(data, "report");
     } catch (e) {
-      document.getElementById("report").innerHTML =
-        `<div class="empty">未有 ${BOTS[botKey].label} ${date} 嘅檔案。<br><small>${escapeHtml(e.message)}</small></div>`;
+      if (report) {
+        report.innerHTML = `<div class="empty">未有 ${BOTS[botKey].label} ${escapeHtml(date)} 嘅檔案。<br><small>${escapeHtml(e.message)}</small></div>`;
+      }
     }
   }
 
-  async function initHome() {
-    const date = qs("date") || todayHK();
-    wireDatePicker(date);
-    setDateParam(date);
-    const meta = document.getElementById("page-meta");
-    if (meta) meta.textContent = `日期：${date}（香港時間）`;
-    const mount = document.getElementById("home-cards");
-    if (!mount) return;
-    const cards = await Promise.all(
-      Object.keys(BOTS).map(async (key) => {
-        const b = BOTS[key];
-        let summary = "未有今日資料";
-        let title = b.label;
-        try {
-          const data = await loadJson(key, date);
-          title = data.title || b.label;
-          summary = data.summary || "已有更新";
-        } catch (_) {}
-        const openBot = b.agentId
-          ? `<a class="open-bot" href="${agentHref(b.agentId)}" title="喺 Grok Bot App 打開對話">開 bot</a>`
-          : "";
-        return `
-          <div class="card">
-            <h2>${escapeHtml(title)}</h2>
-            <p>${escapeHtml(summary)}</p>
-            <div class="card-actions">
-              <a class="go" href="${b.page}?date=${encodeURIComponent(date)}">睇內容 →</a>
-              ${openBot}
-            </div>
-          </div>`;
-      })
-    );
-    mount.innerHTML = cards.join("");
+  function initHome() {
+    return initPage("news");
   }
 
-  window.DailyDash = { initPage, initHome, todayHK };
+  window.DailyDash = {
+    initPage,
+    initHome,
+    todayHK,
+    shiftDate,
+    extractMetrics,
+    renderBody,
+    aqhiBand,
+  };
 })();
 
 (function () {
