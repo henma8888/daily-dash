@@ -1,7 +1,7 @@
 {
-  "name": "每日更新 · 方便自己",
-  "short_name": "每日更新",
-  "description": "新聞／Fin／主題／寫書每日摘要",
+  "name": "朝早新聞 · 每日更新",
+  "short_name": "朝早新聞",
+  "description": "新聞bot 天氣、觀塘 AQHI、流感同醫療朝早摘要",
   "start_url": "./index.html",
   "display": "standalone",
   "background_color": "#0a1020",

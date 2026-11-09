@@ -4,54 +4,13 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>新聞bot · 每日更新</title>
-    <meta name="theme-color" content="#0a1020" />
-  <meta name="mobile-web-app-capable" content="yes" />
-  <meta name="apple-mobile-web-app-capable" content="yes" />
-  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
-  <meta name="apple-mobile-web-app-title" content="每日更新" />
-  <link rel="manifest" href="site.webmanifest" />
-  <link rel="icon" href="favicon.ico" sizes="any" />
-  <link rel="icon" type="image/png" sizes="32x32" href="icons/favicon-32.png" />
-  <link rel="icon" type="image/png" sizes="48x48" href="icons/favicon-48.png" />
-  <link rel="apple-touch-icon" href="apple-touch-icon.png" />
-    <script>
-(function(){
-  try {
-    var s = parseInt(localStorage.getItem("dd-font") || "17", 10);
-    if (isNaN(s)) s = 17;
-    s = Math.max(14, Math.min(22, s));
-    document.documentElement.style.setProperty("--base-font", s + "px");
-  } catch (e) {}
-})();
+  <link rel="canonical" href="index.html" />
+  <meta http-equiv="refresh" content="0; url=index.html" />
+  <script>
+    location.replace("index.html" + location.search + location.hash);
   </script>
-  <link rel="stylesheet" href="css/style.css" />
 </head>
 <body>
-  <div class="wrap">
-    <header>
-      <h1>新聞bot</h1>
-      <button type="button" class="refresh-btn" id="refresh-btn" title="重新載入頁面" aria-label="重新載入">↻ F5</button>
-      <div class="font-controls" id="font-controls" aria-label="字體大小">
-        <button type="button" class="font-btn" id="font-minus" title="縮小字體" aria-label="縮小字體">A−</button>
-        <button type="button" class="font-btn" id="font-plus" title="放大字體" aria-label="放大字體">A+</button>
-      </div>
-      <nav>
-        <a href="index.html">總覽</a>
-        <a class="active" href="news.html">新聞bot</a>
-        <a href="fin.html">FinBot</a>
-        <a href="theme.html">主題機械人</a>
-        <a href="book.html">寫書</a>
-      </nav>
-    </header>
-    <div class="date-nav">
-      <label for="date-picker">揀日期</label>
-      <input id="date-picker" type="date" />
-      <span class="meta" id="page-meta"></span>
-    </div>
-    <div id="report"></div>
-    <footer>資料來源：data/news-YYYY-MM-DD.json</footer>
-  </div>
-  <script src="js/app.js"></script>
-  <script>DailyDash.initPage("news");</script>
+  <p><a href="index.html">前往朝早新聞</a></p>
 </body>
 </html>
