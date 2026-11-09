@@ -443,6 +443,136 @@
     return key.replace(/_/g, " ");
   }
 
+  const WEEKDAYS_ZH = ["星期日", "星期一", "星期二", "星期三", "星期四", "星期五", "星期六"];
+
+  function weekdayFromIso(iso) {
+    const m = /^(\d{4})-(\d{2})-(\d{2})$/.exec(String(iso || ""));
+    if (!m) return "";
+    const utc = new Date(Date.UTC(Number(m[1]), Number(m[2]) - 1, Number(m[3])));
+    if (Number.isNaN(utc.getTime())) return "";
+    return WEEKDAYS_ZH[utc.getUTCDay()];
+  }
+
+  function clipText(s, max) {
+    const t = plain(s);
+    if (!t || t.length <= max) return t;
+    return t.slice(0, max - 1) + "…";
+  }
+
+  /** Parse a supplied temperature. Missing or non-numeric values stay empty. */
+  function parseTempNumber(raw) {
+    if (raw == null || raw === "") return null;
+    if (typeof raw === "boolean") return null;
+    if (typeof raw === "number") {
+      if (!Number.isFinite(raw) || raw < -20 || raw > 50) return null;
+      return Math.round(raw * 10) / 10;
+    }
+    const text = normalizeUnits(String(raw)).trim();
+    if (!text || text === "—" || text === "-" || /^n\/?a$/i.test(text) || /未有|不適用/.test(text)) return null;
+    const m = text.match(/-?\d+(?:\.\d+)?/);
+    if (!m) return null;
+    const n = Number(m[0]);
+    if (!Number.isFinite(n) || n < -20 || n > 50) return null;
+    return Math.round(n * 10) / 10;
+  }
+
+  function formatTemp(n) {
+    if (n == null) return null;
+    return Number.isInteger(n) ? String(n) : String(n);
+  }
+
+  function normalizeForecastDay(item) {
+    if (!item || typeof item !== "object") return null;
+    const date = /^\d{4}-\d{2}-\d{2}$/.exec(String(item.date || "")) ? String(item.date) : "";
+    const rawLabel = plain(item.label || "");
+    const label = rawLabel && !/^\d{4}-\d{2}-\d{2}$/.test(rawLabel)
+      ? clipText(rawLabel, 8)
+      : weekdayFromIso(date || rawLabel);
+    const high = parseTempNumber(item.high);
+    const low = parseTempNumber(item.low);
+    const text = clipText(item.text || item.summary || "", 24);
+    if (!label || (high == null && low == null && !text)) return null;
+    return { date, label, high, low, text };
+  }
+
+  function forecastFromStructured(data) {
+    const raw = data && data.forecast_3day;
+    if (!Array.isArray(raw) || !raw.length) return [];
+    return raw.map(normalizeForecastDay).filter(Boolean).slice(0, 3);
+  }
+
+  function splitTableLine(line) {
+    return String(line)
+      .trim()
+      .replace(/^\|/, "")
+      .replace(/\|$/, "")
+      .split("|")
+      .map((c) => c.trim());
+  }
+
+  /** Optional fallback: a sections item headed forecast_3day with a markdown table. */
+  function forecastFromSection(data) {
+    const sec = (data.sections || []).find((s) => /^forecast_3day$/i.test(String(s.heading || "").trim()));
+    if (!sec || !sec.body) return [];
+    const lines = String(sec.body).replace(/\r\n/g, "\n").split("\n");
+    for (let i = 0; i < lines.length; i++) {
+      if (!lines[i].trim().startsWith("|")) continue;
+      if (i + 1 >= lines.length || !/^\s*\|?\s*:?-/.test(lines[i + 1])) continue;
+      const head = splitTableLine(lines[i]).map((h) => plain(h));
+      const idx = (re) => head.findIndex((h) => re.test(h));
+      const dayIdx = idx(/日子|日期|date|label|星期/i);
+      const highIdx = idx(/最高|high/i);
+      const lowIdx = idx(/最低|low/i);
+      const textIdx = idx(/概況|天氣|text|說明|預測/i);
+      if (highIdx < 0 && lowIdx < 0) continue;
+      const days = [];
+      for (let r = i + 2; r < lines.length && lines[r].trim().startsWith("|"); r++) {
+        const cells = splitTableLine(lines[r]);
+        const dayCell = dayIdx >= 0 ? plain(cells[dayIdx] || "") : "";
+        const iso = /^\d{4}-\d{2}-\d{2}$/.test(dayCell) ? dayCell : "";
+        days.push(
+          normalizeForecastDay({
+            date: iso,
+            label: iso ? "" : dayCell,
+            high: highIdx >= 0 ? cells[highIdx] : null,
+            low: lowIdx >= 0 ? cells[lowIdx] : null,
+            text: textIdx >= 0 ? cells[textIdx] : "",
+          })
+        );
+      }
+      return days.filter(Boolean).slice(0, 3);
+    }
+    return [];
+  }
+
+  function extractForecast(data) {
+    if (!data || typeof data !== "object") return [];
+    if (Array.isArray(data.forecast_3day)) return forecastFromStructured(data);
+    return forecastFromSection(data);
+  }
+
+  function renderForecast(days) {
+    if (!days || !days.length) return "";
+    const cells = days
+      .map((d) => {
+        const high = d.high == null ? "—" : escapeHtml(formatTemp(d.high)) + "°";
+        const low = d.low == null ? "—" : escapeHtml(formatTemp(d.low)) + "°";
+        const highSpoken = d.high == null ? "未有" : formatTemp(d.high) + "度";
+        const lowSpoken = d.low == null ? "未有" : formatTemp(d.low) + "度";
+        const text = d.text
+          ? `<p class="forecast-text">${escapeHtml(d.text)}</p>`
+          : "";
+        return `
+      <article class="forecast-day">
+        <h3 class="forecast-label">${escapeHtml(d.label)}</h3>
+        <p class="forecast-temps" aria-label="${escapeHtml(d.label)} 最高 ${escapeHtml(highSpoken)}，最低 ${escapeHtml(lowSpoken)}"><span class="forecast-high">${high}</span><span class="forecast-sep">/</span><span class="forecast-low">${low}</span></p>
+        ${text}
+      </article>`;
+      })
+      .join("");
+    return `<section class="forecast" aria-label="三日天氣預測">${cells}</section>`;
+  }
+
   function renderReport(data, mount) {
     const el = document.getElementById(mount);
     if (!el) return;
@@ -450,7 +580,9 @@
       el.innerHTML = `<div class="empty">呢日未有資料。</div>`;
       return;
     }
+    const forecast = extractForecast(data);
     const sections = (data.sections || [])
+      .filter((s) => !(forecast.length && /^forecast_3day$/i.test(String(s.heading || "").trim())))
       .map(
         (s) => `
       <div class="section">
@@ -467,6 +599,7 @@
       .join("");
     el.innerHTML = `
       ${renderMetrics(data)}
+      ${renderForecast(forecast)}
       <article class="panel">
         <h2>${escapeHtml(data.title || "")}</h2>
         <p class="meta">${escapeHtml(data.bot || "")} · ${escapeHtml(data.date || "")}</p>
@@ -526,6 +659,7 @@
     todayHK,
     shiftDate,
     extractMetrics,
+    extractForecast,
     renderBody,
     aqhiBand,
   };

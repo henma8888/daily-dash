@@ -34,6 +34,18 @@
 "fields": { "temperature": 27, "humidity": 82, "aqhi": 3 }
 ```
 
+可選 `forecast_3day` 會喺三張大卡片下面多一行較細嘅三日預報（日子、最高／最低 °C、短句）。冇呢個欄、或者係空陣列，就完全唔顯示，亦唔會報錯。頁面唔會自己估溫度。
+
+```json
+"forecast_3day": [
+  {"date": "2026-11-09", "label": "今日", "high": 26, "low": 19, "text": "天晴乾燥"},
+  {"date": "2026-11-10", "label": "明日", "high": 24, "low": 16, "text": "清涼"},
+  {"date": "2026-11-11", "label": "後日", "high": 25, "low": 18, "text": "氣溫回升"}
+]
+```
+
+`label` 留空就用日期嘅星期。最多顯示 3 日。若未有頂層欄，而 `sections` 有 heading 為 `forecast_3day` 嘅 markdown 表（欄位例如日子／最高／最低／概況），會用嗰張表做後備。
+
 小節正文同 `links` 入面嘅 http(s) 連結會開新分頁。
 
 Raw 例子：
