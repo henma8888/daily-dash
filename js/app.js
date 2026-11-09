@@ -42,6 +42,25 @@
     }).format(new Date());
   }
 
+  /** Move a YYYY-MM-DD calendar date by whole days. Independent of the browser zone. */
+  function shiftDate(iso, days) {
+    const m = /^(\d{4})-(\d{2})-(\d{2})$/.exec(String(iso || ""));
+    if (!m || !Number.isFinite(days)) return null;
+    const utc = new Date(Date.UTC(Number(m[1]), Number(m[2]) - 1, Number(m[3]) + days));
+    const y = utc.getUTCFullYear();
+    const mo = String(utc.getUTCMonth() + 1).padStart(2, "0");
+    const d = String(utc.getUTCDate()).padStart(2, "0");
+    return y + "-" + mo + "-" + d;
+  }
+
+  function goToDate(date) {
+    if (!/^\d{4}-\d{2}-\d{2}$/.test(String(date || ""))) return;
+    const u = new URL(location.href);
+    if (u.searchParams.get("date") === date) return;
+    u.searchParams.set("date", date);
+    location.assign(u.href);
+  }
+
   function qs(name) {
     return new URLSearchParams(location.search).get(name);
   }
@@ -459,14 +478,23 @@
 
   function wireDatePicker(date) {
     const input = document.getElementById("date-picker");
-    if (!input) return;
-    input.value = date;
-    input.addEventListener("change", () => {
-      const d = input.value;
-      if (!d) return;
-      setDateParam(d);
-      location.reload();
-    });
+    if (input) {
+      input.value = date;
+      input.addEventListener("change", () => {
+        if (input.value) goToDate(input.value);
+      });
+    }
+    const prev = document.getElementById("date-prev");
+    const next = document.getElementById("date-next");
+    const todayBtn = document.getElementById("date-today");
+    if (prev) prev.addEventListener("click", () => goToDate(shiftDate(date, -1)));
+    if (next) next.addEventListener("click", () => goToDate(shiftDate(date, 1)));
+    if (todayBtn) {
+      const onToday = date === todayHK();
+      todayBtn.classList.toggle("is-today", onToday);
+      todayBtn.setAttribute("aria-current", onToday ? "date" : "false");
+      todayBtn.addEventListener("click", () => goToDate(todayHK()));
+    }
   }
 
   async function initPage(botKey) {
@@ -496,6 +524,7 @@
     initPage,
     initHome,
     todayHK,
+    shiftDate,
     extractMetrics,
     renderBody,
     aqhiBand,

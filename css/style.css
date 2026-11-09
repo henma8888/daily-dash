@@ -102,6 +102,12 @@ header h1 {
   margin-bottom: 1rem;
   flex-wrap: wrap;
 }
+.date-controls {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  flex-wrap: wrap;
+}
 .date-nav label { font-size: 0.95rem; color: var(--muted); }
 .date-nav input[type="date"] {
   background: var(--surface);
@@ -113,6 +119,43 @@ header h1 {
   font-size: 1rem;
   color-scheme: dark;
 }
+.date-step,
+.date-today {
+  border: 1px solid var(--border);
+  background: var(--surface);
+  color: var(--text);
+  font-family: inherit;
+  cursor: pointer;
+  line-height: 1;
+}
+.date-step {
+  width: 2.5rem;
+  height: 2.5rem;
+  border-radius: 999px;
+  font-size: 1.2rem;
+  font-weight: 700;
+}
+.date-today {
+  padding: 0.55rem 0.9rem;
+  border-radius: 999px;
+  border-color: var(--accent2);
+  color: var(--accent2);
+  font-size: 0.98rem;
+  font-weight: 700;
+}
+.date-step:hover,
+.date-today:hover {
+  background: var(--surface2);
+  border-color: var(--accent);
+  color: var(--accent);
+}
+.date-today.is-today {
+  background: rgba(107, 207, 142, 0.18);
+  color: var(--accent2);
+  border-color: var(--accent2);
+}
+.date-step:active,
+.date-today:active { transform: scale(0.96); }
 
 .metrics {
   display: grid;

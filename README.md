@@ -6,7 +6,7 @@
 
 - GitHub Pages：`https://henma8888.github.io/daily-dash/`
 - `news.html` 會轉去首頁（保留 `?date=`）
-- 日期選擇、F5 重新載入、A− / A+ 字體、以及「開 bot」（新聞bot）都喺首頁
+- 日期選擇、左右一日（香港日曆）、「今日」、F5 重新載入、A− / A+ 字體、以及「開 bot」（新聞bot）都喺首頁
 
 ## 資料
 

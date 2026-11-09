@@ -37,8 +37,13 @@
       </div>
     </header>
     <div class="date-nav">
-      <label for="date-picker">揀日期</label>
-      <input id="date-picker" type="date" />
+      <div class="date-controls">
+        <button type="button" class="date-step" id="date-prev" title="前一日" aria-label="前一日">←</button>
+        <label for="date-picker">揀日期</label>
+        <input id="date-picker" type="date" />
+        <button type="button" class="date-step" id="date-next" title="下一日" aria-label="下一日">→</button>
+        <button type="button" class="date-today" id="date-today" title="跳去今日（香港時間）">今日</button>
+      </div>
       <span class="meta" id="page-meta"></span>
     </div>
     <div id="report"></div>
