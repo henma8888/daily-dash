@@ -2,8 +2,10 @@
   // Public JSON on GitHub (NAS page can stay; also works on GitHub Pages)
   const DATA_BASE = "https://raw.githubusercontent.com/henma8888/daily-dash/main/data";
   const BOTS = {
-    news: { file: "news", label: "新聞bot", page: "index.html", agentId: "530c1ee2-873b-4a02-8789-f8d274ae4302" },
+    news: { file: "news", label: "新聞bot", page: "index.html" },
   };
+  // Clinic sidebar embeds this page. 「開瀏覽器」 leaves that frame for the public site.
+  const PAGES_URL = "https://henma8888.github.io/daily-dash/";
 
   const HEADINGS = {
     weather: "天氣",
@@ -14,23 +16,46 @@
     news: "新聞",
   };
 
-  function agentHref(id) {
-    return id ? "grokbot://app/v1/agent?id=" + encodeURIComponent(id) : "";
+  function pagesHref(date) {
+    const u = new URL(PAGES_URL);
+    if (/^\d{4}-\d{2}-\d{2}$/.test(String(date || ""))) u.searchParams.set("date", date);
+    return u.href;
   }
 
-  function wireOpenBot(botKey) {
-    const b = BOTS[botKey];
-    if (!b || !b.agentId) return;
-    const header = document.querySelector("header");
-    if (!header || header.querySelector(".open-bot")) return;
-    const a = document.createElement("a");
-    a.className = "open-bot";
-    a.href = agentHref(b.agentId);
-    a.textContent = "開 bot";
-    a.title = "喺 Grok Bot App 打開「" + b.label + "」對話";
-    const h1 = header.querySelector("h1");
-    if (h1 && h1.nextSibling) header.insertBefore(a, h1.nextSibling);
-    else header.appendChild(a);
+  function selectedDate() {
+    const input = document.getElementById("date-picker");
+    if (input && /^\d{4}-\d{2}-\d{2}$/.test(input.value)) return input.value;
+    const q = qs("date");
+    if (q && /^\d{4}-\d{2}-\d{2}$/.test(q)) return q;
+    return todayHK();
+  }
+
+  function wireOpenBrowser(date) {
+    const a = document.getElementById("open-browser");
+    if (!a) return;
+    const applyHref = () => {
+      a.href = pagesHref(date || selectedDate());
+    };
+    applyHref();
+    a.target = "_blank";
+    a.rel = "noopener noreferrer";
+    if (a.dataset.wired === "1") return;
+    a.dataset.wired = "1";
+    a.addEventListener("click", (e) => {
+      const url = pagesHref(selectedDate());
+      a.href = url;
+      if (e.defaultPrevented || e.button !== 0 || e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return;
+      let opened = null;
+      try {
+        opened = window.open(url, "_blank");
+      } catch (err) {
+        opened = null;
+      }
+      if (opened) {
+        e.preventDefault();
+        try { opened.opener = null; } catch (err) {}
+      }
+    });
   }
 
   function todayHK() {
@@ -423,17 +448,47 @@
     html += "</tr></thead><tbody>";
     bodyRows.forEach((cells) => {
       html += "<tr>";
-      cells.forEach((c) => (html += `<td>${inlineHtml(c)}</td>`));
+      cells.forEach((c) => {
+        const marker = isChangeMarker(c) ? ' class="chg-cell"' : "";
+        html += `<td${marker}>${inlineHtml(c)}</td>`;
+      });
       html += "</tr>";
     });
     html += "</tbody></table>";
     return html;
   }
 
+  /** A cell whose whole value is a day-over-day marker, not 「來源」 or 「（日常）」. */
+  function isChangeMarker(raw) {
+    const t = String(raw || "")
+      .trim()
+      .replace(/\*\*/g, "")
+      .replace(/[【】]/g, "");
+    return t === "新增" || t === "更新";
+  }
+
+  function changeBadge(kind) {
+    const isNew = kind === "new";
+    const label = isNew ? "新增" : "更新";
+    return `<span class="dd-badge ${isNew ? "dd-badge-new" : "dd-badge-upd"}">${label}</span>`;
+  }
+
+  /** **新增** / **更新** and 【新增】 / 【更新】 only. Plain 「新增」 in a sentence stays text. */
+  function applyChangeBadges(html) {
+    return String(html)
+      .replace(/<strong>\s*新增\s*<\/strong>/g, changeBadge("new"))
+      .replace(/<strong>\s*更新\s*<\/strong>/g, changeBadge("upd"))
+      .replace(/\*\*\s*新增\s*\*\*/g, changeBadge("new"))
+      .replace(/\*\*\s*更新\s*\*\*/g, changeBadge("upd"))
+      .replace(/【新增】/g, changeBadge("new"))
+      .replace(/【更新】/g, changeBadge("upd"));
+  }
+
   function inlineHtml(s) {
     let t = escapeHtml(s);
     t = t.replace(/\[([^\]]+)\]\((https?:[^)\s]+)\)/g, '<a href="$2" target="_blank" rel="noopener noreferrer">$1</a>');
     t = t.replace(/\*\*([^*]+)\*\*/g, "<strong>$1</strong>");
+    t = applyChangeBadges(t);
     return t;
   }
 
@@ -603,7 +658,7 @@
       <article class="panel">
         <h2>${escapeHtml(data.title || "")}</h2>
         <p class="meta">${escapeHtml(data.bot || "")} · ${escapeHtml(data.date || "")}</p>
-        <p class="summary">${escapeHtml(data.summary || "")}</p>
+        <p class="summary">${applyChangeBadges(escapeHtml(data.summary || ""))}</p>
         ${sections}
         ${links ? `<div class="links">${links}</div>` : ""}
       </article>`;
@@ -632,8 +687,8 @@
 
   async function initPage(botKey) {
     if (!BOTS[botKey]) botKey = "news";
-    wireOpenBot(botKey);
     const date = qs("date") || todayHK();
+    wireOpenBrowser(date);
     wireDatePicker(date);
     setDateParam(date);
     const meta = document.getElementById("page-meta");
@@ -667,6 +722,7 @@
 
 (function () {
   var FONT_KEY = "dd-font";
+  var THEME_KEY = "dd-theme";
   var FONT_MIN = 14;
   var FONT_MAX = 22;
   var FONT_DEFAULT = 17;
@@ -694,7 +750,41 @@
     return clampFont(parseInt(raw, 10) || FONT_DEFAULT);
   }
 
+  function currentTheme() {
+    return document.documentElement.getAttribute("data-theme") === "light" ? "light" : "dark";
+  }
+
+  function applyTheme(theme) {
+    theme = theme === "light" ? "light" : "dark";
+    document.documentElement.setAttribute("data-theme", theme);
+    try { localStorage.setItem(THEME_KEY, theme); } catch (e) {}
+    var meta = document.querySelector('meta[name="theme-color"]');
+    if (meta) meta.setAttribute("content", theme === "light" ? "#f4f7fb" : "#0a1020");
+    var btn = document.getElementById("theme-toggle");
+    if (btn) {
+      var toLight = theme !== "light";
+      btn.textContent = toLight ? "淺色" : "深色";
+      var action = toLight ? "轉做淺色" : "轉做深色";
+      btn.title = action;
+      btn.setAttribute("aria-label", action);
+    }
+    return theme;
+  }
+
   function bindUi() {
+    var themeBtn = document.getElementById("theme-toggle");
+    if (themeBtn) {
+      themeBtn.addEventListener("click", function () {
+        applyTheme(currentTheme() === "light" ? "dark" : "light");
+      });
+    }
+    var savedTheme = "dark";
+    try {
+      var stored = localStorage.getItem(THEME_KEY);
+      if (stored === "light" || stored === "dark") savedTheme = stored;
+    } catch (e) {}
+    applyTheme(savedTheme);
+
     var refresh = document.getElementById("refresh-btn");
     if (refresh) {
       refresh.addEventListener("click", function () { location.reload(); });
