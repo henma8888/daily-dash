@@ -45,8 +45,30 @@ header h1 {
   letter-spacing: 0.03em;
 }
 
-.refresh-btn {
+.theme-btn {
   margin-left: auto;
+  flex: 0 0 auto;
+  padding: 0.35rem 0.7rem;
+  border-radius: 999px;
+  border: 1px solid var(--border);
+  background: var(--surface);
+  color: var(--text);
+  font-size: 0.9rem;
+  font-family: inherit;
+  font-weight: 700;
+  cursor: pointer;
+  line-height: 1.2;
+  white-space: nowrap;
+}
+.theme-btn:hover {
+  background: var(--surface2);
+  border-color: var(--accent);
+  color: var(--accent);
+}
+.theme-btn:active { transform: scale(0.96); }
+
+.refresh-btn {
+  flex: 0 0 auto;
   padding: 0.4rem 0.8rem;
   border-radius: 999px;
   border: 1px solid var(--border);
@@ -366,9 +388,10 @@ footer {
 }
 footer code { color: var(--text); }
 
-a.open-bot {
+a.open-browser {
   display: inline-flex;
   align-items: center;
+  flex: 0 0 auto;
   padding: 0.35rem 0.75rem;
   border-radius: 999px;
   border: 1px solid var(--accent2);
@@ -378,8 +401,9 @@ a.open-bot {
   font-weight: 700;
   text-decoration: none;
   line-height: 1.2;
+  white-space: nowrap;
 }
-a.open-bot:hover {
+a.open-browser:hover {
   background: rgba(107, 207, 142, 0.12);
   text-decoration: none;
 }
@@ -387,8 +411,67 @@ a.open-bot:hover {
 @media (max-width: 760px) {
   .metrics { grid-template-columns: 1fr; }
   .metric { min-height: 0; }
-  .refresh-btn { margin-left: 0; }
+  .theme-btn { margin-left: 0; }
   .metric-value { font-size: 3.6rem; }
+}
+
+/* Light theme. Dark stays the :root default; choice is stored as dd-theme. */
+:root[data-theme="light"] {
+  --bg: #f4f7fb;
+  --surface: #ffffff;
+  --surface2: #e7eef6;
+  --text: #1b2838;
+  --muted: #4e5e72;
+  --accent: #155a9c;
+  --accent2: #0c6e3c;
+  --border: #cfd8e6;
+  --low: #0c6e3c;
+  --mid: #7a4e00;
+  --high: #a31b1b;
+  color-scheme: light;
+}
+:root[data-theme="light"] body {
+  background:
+    radial-gradient(1200px 480px at 10% -10%, rgba(21, 90, 156, 0.10), transparent 55%),
+    radial-gradient(900px 420px at 100% 0%, rgba(12, 110, 60, 0.07), transparent 50%),
+    var(--bg);
+}
+:root[data-theme="light"] .date-nav input[type="date"] {
+  color-scheme: light;
+}
+:root[data-theme="light"] .date-today.is-today {
+  background: #e8f6ee;
+  color: #075a31;
+  border-color: #0c6e3c;
+}
+:root[data-theme="light"] .metric {
+  background: linear-gradient(180deg, #ffffff, #f5f8fb);
+  box-shadow: 0 8px 22px rgba(26, 45, 72, 0.08);
+}
+:root[data-theme="light"] .metric.aqhi-low {
+  background: linear-gradient(165deg, rgba(12, 110, 60, 0.16), #ffffff 68%);
+}
+:root[data-theme="light"] .metric.aqhi-mid {
+  background: linear-gradient(165deg, rgba(122, 78, 0, 0.16), #ffffff 68%);
+}
+:root[data-theme="light"] .metric.aqhi-high {
+  background: linear-gradient(165deg, rgba(163, 27, 27, 0.14), #ffffff 68%);
+}
+:root[data-theme="light"] .aqhi-low .metric-badge {
+  background: rgba(12, 110, 60, 0.12);
+}
+:root[data-theme="light"] .aqhi-mid .metric-badge {
+  background: rgba(122, 78, 0, 0.12);
+}
+:root[data-theme="light"] .aqhi-high .metric-badge {
+  background: rgba(163, 27, 27, 0.12);
+}
+:root[data-theme="light"] .forecast-day {
+  background: #ffffff;
+  border-color: var(--border);
+}
+:root[data-theme="light"] a.open-browser:hover {
+  background: rgba(12, 110, 60, 0.10);
 }
 @media (max-width: 520px) {
   .forecast {

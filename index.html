@@ -22,6 +22,13 @@
     s = Math.max(14, Math.min(22, s));
     document.documentElement.style.setProperty("--base-font", s + "px");
   } catch (e) {}
+  try {
+    if (localStorage.getItem("dd-theme") === "light") {
+      document.documentElement.setAttribute("data-theme", "light");
+      var meta = document.querySelector('meta[name="theme-color"]');
+      if (meta) meta.setAttribute("content", "#f4f7fb");
+    }
+  } catch (e) {}
 })();
   </script>
   <link rel="stylesheet" href="css/style.css" />
@@ -30,6 +37,8 @@
   <div class="wrap">
     <header>
       <h1>朝早新聞</h1>
+      <a class="open-browser" id="open-browser" href="https://henma8888.github.io/daily-dash/" target="_blank" rel="noopener noreferrer" title="用瀏覽器打開呢一版">開瀏覽器</a>
+      <button type="button" class="theme-btn" id="theme-toggle" title="轉做淺色" aria-label="轉做淺色">淺色</button>
       <button type="button" class="refresh-btn" id="refresh-btn" title="重新載入頁面" aria-label="重新載入">↻ F5</button>
       <div class="font-controls" id="font-controls" aria-label="字體大小">
         <button type="button" class="font-btn" id="font-minus" title="縮小字體" aria-label="縮小字體">A−</button>

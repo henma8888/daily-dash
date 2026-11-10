@@ -6,7 +6,9 @@
 
 - GitHub Pages：`https://henma8888.github.io/daily-dash/`
 - `news.html` 會轉去首頁（保留 `?date=`）
-- 日期選擇、左右一日（香港日曆）、「今日」、F5 重新載入、A− / A+ 字體、以及「開 bot」（新聞bot）都喺首頁
+- 日期選擇、左右一日（香港日曆）、「今日」、F5 重新載入、A− / A+ 字體、「淺色／深色」、以及「開瀏覽器」都喺首頁
+- 「淺色」同「深色」會記住喺呢部瀏覽器（`localStorage` 鍵 `dd-theme`）。預設係深色。
+- 「開瀏覽器」用新分頁打開 `https://henma8888.github.io/daily-dash/`，並帶上而家揀咗嘅 `?date=`。喺 iframe 入面撳都會離開個框。
 
 ## 資料
 
