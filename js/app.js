@@ -448,17 +448,47 @@
     html += "</tr></thead><tbody>";
     bodyRows.forEach((cells) => {
       html += "<tr>";
-      cells.forEach((c) => (html += `<td>${inlineHtml(c)}</td>`));
+      cells.forEach((c) => {
+        const marker = isChangeMarker(c) ? ' class="chg-cell"' : "";
+        html += `<td${marker}>${inlineHtml(c)}</td>`;
+      });
       html += "</tr>";
     });
     html += "</tbody></table>";
     return html;
   }
 
+  /** A cell whose whole value is a day-over-day marker, not 「來源」 or 「（日常）」. */
+  function isChangeMarker(raw) {
+    const t = String(raw || "")
+      .trim()
+      .replace(/\*\*/g, "")
+      .replace(/[【】]/g, "");
+    return t === "新增" || t === "更新";
+  }
+
+  function changeBadge(kind) {
+    const isNew = kind === "new";
+    const label = isNew ? "新增" : "更新";
+    return `<span class="dd-badge ${isNew ? "dd-badge-new" : "dd-badge-upd"}">${label}</span>`;
+  }
+
+  /** **新增** / **更新** and 【新增】 / 【更新】 only. Plain 「新增」 in a sentence stays text. */
+  function applyChangeBadges(html) {
+    return String(html)
+      .replace(/<strong>\s*新增\s*<\/strong>/g, changeBadge("new"))
+      .replace(/<strong>\s*更新\s*<\/strong>/g, changeBadge("upd"))
+      .replace(/\*\*\s*新增\s*\*\*/g, changeBadge("new"))
+      .replace(/\*\*\s*更新\s*\*\*/g, changeBadge("upd"))
+      .replace(/【新增】/g, changeBadge("new"))
+      .replace(/【更新】/g, changeBadge("upd"));
+  }
+
   function inlineHtml(s) {
     let t = escapeHtml(s);
     t = t.replace(/\[([^\]]+)\]\((https?:[^)\s]+)\)/g, '<a href="$2" target="_blank" rel="noopener noreferrer">$1</a>');
     t = t.replace(/\*\*([^*]+)\*\*/g, "<strong>$1</strong>");
+    t = applyChangeBadges(t);
     return t;
   }
 
@@ -628,7 +658,7 @@
       <article class="panel">
         <h2>${escapeHtml(data.title || "")}</h2>
         <p class="meta">${escapeHtml(data.bot || "")} · ${escapeHtml(data.date || "")}</p>
-        <p class="summary">${escapeHtml(data.summary || "")}</p>
+        <p class="summary">${applyChangeBadges(escapeHtml(data.summary || ""))}</p>
         ${sections}
         ${links ? `<div class="links">${links}</div>` : ""}
       </article>`;
