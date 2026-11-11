@@ -1,0 +1,113 @@
+{
+  "date": "2026-11-11",
+  "bot": "新聞bot",
+  "title": "2026-11-11 香港天氣・空氣・流感・醫療科研詳細版",
+  "summary": "今早天文台最低 18.0°C，上午 9 時 20°C、濕度 55%，天晴乾燥、最高約 25°C；火災危險警告紅色。觀塘 AQHI 3（低）。流感無新重症公布，第 45 周 Flu Express 未出；【新增】急症科流感樣症狀組回至基線（113.9）。醫療舊聞可睇返 11-09；【新增】5 篇唔重複論文（膝痹輸刺電針、偏頭痛針灸、帕金森芪黃針、aMCI 睡眠針灸、血府逐瘀痛經）。",
+  "forecast_3day": [
+    {
+      "date": "2026-11-11",
+      "label": "今日",
+      "high": 25,
+      "low": 18,
+      "text": "天晴乾燥，早上稍涼"
+    },
+    {
+      "date": "2026-11-12",
+      "label": "明日",
+      "high": 27,
+      "low": 22,
+      "text": "部分時間有陽光，日間乾燥"
+    },
+    {
+      "date": "2026-11-13",
+      "label": "後日",
+      "high": 27,
+      "low": 23,
+      "text": "大致多雲，日間短暫陽光，稍後有幾陣驟雨"
+    }
+  ],
+  "sections": [
+    {
+      "heading": "weather",
+      "body": "| 項目 | 資料 |\n| --- | --- |\n| 現時／今早 | 天文台午夜至上午 9 時最低 **18.0°C**；上午 9 時 **20°C**、相對濕度 **55%**，天晴陽光充沛；紫外線指數 1（低）。清晨市區約 18°C，新界部分地區因輻射冷卻曾降至 **12°C 或以下** |\n| 今日天氣 | **天晴乾燥**，早上稍涼；日間最高約 **25°C**；吹和緩北至東北風。相對濕度預測約 **40–70%** |\n| 今晚／展望 | 日夜溫差仍較大；本週後期氣溫回升；星期五稍後及星期六初時有幾陣驟雨；星期日短暫時間有陽光 |\n| 警告／背景 | 乾燥東北季候風；**火災危險警告為紅色（極高）**——郊外、山野及拜祭地點須嚴防火種 |\n| 來源 | [天文台本港天氣預報](https://www.weather.gov.hk/hko/textonly/v2/forecast/localc.htm)、[九天天氣預報](https://www.hko.gov.hk/textonly/v2/forecast/nday.htm)、[天氣報告（09:02）](https://www.weather.gov.hk/textonly/v2/forecast/chinesewx2.htm)、[天氣稿第025號](https://www.info.gov.hk/gia/wr/202611/11/P2026111100081.htm) |"
+    },
+    {
+      "heading": "aqhi_kwun_tong",
+      "body": "| 項目 | 資料 |\n| --- | --- |\n| 觀塘 AQHI | **3**（**低／好**）（環保署 08:30 公布，數據截至 08:00） |\n| AQHI 分級（必須參考） | **1–3 低（好）／4–6 中（普通）／7 高／8–10 甚高／10+ 嚴重** |\n| 其他一般監測站 | 整體 **2–3（低）**；東涌 **2** 略佳，其餘多為 3；塔門 3 |\n| 路邊監測站 | 銅鑼灣／中環／旺角均 **3（低）** |\n| 預測 | 今日上午：一般及路邊均為**低至中**；下午均為**中**。達「中」時一般可如常活動，心臟病／呼吸系統疾病並出現症狀者應考慮減少戶外體力消耗 |\n| 診所提示（藍田／觀塘） | 空氣屬低風險；重點係**天晴極乾燥＋日夜溫差＋紅色火災危險警告**——外感、鼻鼽、喘證／慢阻肺、皮膚燥裂患者宜加強保暖潤燥；提醒患者勿在郊外用火 |\n| 來源 | [環保署 AQHI（11月11日 08:30）](https://www.info.gov.hk/gia/api/202611/11/P2026111100151.htm)、[環保署 AQHI](https://www.aqhi.gov.hk/) |"
+    },
+    {
+      "heading": "flu",
+      "body": "對比 11-10：第 45 周 Flu Express 尚未公布，衞生防護中心亦無新一宗兒童／成人重症或死亡新聞稿；定點家庭醫學診所／私家醫生第 45 周求診率尚未更新。抗藥性、疫苗計劃同昨日，可[睇返 11-10](https://henma8888.github.io/daily-dash/)。\n\n| 標記 | 項目 | 最新官方情況 |\n| --- | --- | --- |\n| **新增** | 急症科症狀監測（第 45 周，11/1–7） | 流感樣症狀組比率 **113.9**（前一周 124.8），處於**基線水平**；手足口病、急性腸道傳染病及急性結膜炎亦處基線 |\n| （快照） | 整體活躍度（仍以第 44 周為準） | 整體流感活躍程度持續下降，但仍高於基線；陽性率 **6.19%**（基線 4.94%），以甲型 H1 為主；公院入院率 0.29／萬人；本季兒童嚴重個案仍為 **29** 宗（**2** 死亡）。詳細表格可睇返 11-10 |\n| 來源 |  | [急症科傳染病症狀監測](https://www.chp.gov.hk/tc/statistics/data/10/26/44/601/495.html)、[COVID-19 & Flu Express Week 44](https://www.chp.gov.hk/files/pdf/covid_flux_week44_5_11_2026_eng.pdf)、[季節性流感專頁](https://www.chp.gov.hk/tc/features/14843.html) |"
+    },
+    {
+      "heading": "medical",
+      "body": "對比 11-10／11-09：臨床／監管舊聞（兒童生長發育專病門診、中西藥相互作用預警、中成藥註冊加速試行等）無變，可睇返 11-09。以下只列今日氣候提示及【新增】論文。\n\n### 一、香港臨床／監管要點（中醫優先）\n\n| 標記 | 重點 | 內容與診所啟示 |\n| --- | --- | --- |\n| （日常） | 今日氣候相關 | 天晴極乾燥＋日夜溫差大，並有**紅色火災危險警告**：外感、鼻鼽、喘證／慢阻肺、皮膚燥裂常見；處方注意潤燥固表，提醒保暖補水，郊外慎火。 |\n| 舊聞 | 監管／服務 | 無新公布，可睇返 11-09。 |\n\n### 二、學術研究／同行評審（5 篇，均與近日用過嘅文獻唔重複）\n\n| 標記 | 研究 | 主要結果 | 中醫診所臨床 takeaway | 來源 |\n| --- | --- | --- | --- | --- |\n| **新增** | **膝骨關節炎「輸刺」電針多中心假針灸對照 RCT**（n=110；Front Med 2026-08-26） | 每週 3 次、共 2 周。CGI-I 反應率電針 **76.4%** vs 假電針 **27.3%**（差 49.1 個百分點，95% CI 32.8–65.4；p<0.001）。VAS 多改善 2.1 分，KOOS 疼痛／症狀亦較優；不良事件多為輕微皮下出血或針後痛，無嚴重事件。觀察期短，作者稱屬暫時療效 | 膝痹門診可參考輸刺（針至骨面）＋電針（內外膝眼 2/100 Hz）作短期止痛及改善自我感覺；須向患者說明療程短、長期效果未明，不能取代必要時嘅西醫藥物或手術評估 | [Frontiers 全文](https://www.frontiersin.org/journals/medicine/articles/10.3389/fmed.2026.1864999/full) |\n| **新增** | **無先兆偏頭痛針灸 RCT＋腦連接組預測**（n=120；JAMA Netw Open 2026） | 4 周 12 次真針灸較假針灸多減少每月偏頭痛日數（中位差 **−1.0 日**，95% CI −2.0 至 0；P=0.02）；頭痛日數、急救藥使用、VAS、HIT-6 及生活質素亦較佳。基線腦功能連接可輕度預測止痛／殘疾改善 | 偏頭痛門診可將針灸作為藥物反應不佳者嘅輔助選項；效果屬中等，須說明個體差異，並繼續監測止痛藥使用 | [JAMA Network Open](https://jamanetwork.com/journals/jamanetworkopen/fullarticle/2844379) |\n| **新增** | **芪黃針治療帕金森病運動症狀：假針灸對照 RCT**（n=140；Mov Disord 2026） | 6 周 9 次，加於穩定常規用藥。第 6 周 UPDRS-III 改善 13.78 vs 5.32 分（組間差 **8.45**，95% CI 5.49–11.42；P<0.001），第 10 周差距擴大至 **10.88** 分；非運動症狀及 PDQ-39 亦較優，以姿勢不穩／步態障礙型得益較大。不良事件多為輕微出血或瘀腫 | 已診帕金森患者可作輔助討論，尤其步態不穩為主者；必須與神經科協調、維持原有藥物，勿視為可改變病程嘅治療。單中心、隨訪短 | [NeurologyLive 報道](https://www.neurologylive.com/view/qihuang-needle-acupuncture-improves-motor-nonmotor-pd-symptoms)、[DOI 10.1002/mds.70343](https://doi.org/10.1002/mds.70343) |\n| **新增** | **遺忘型輕度認知障礙合併睡眠障礙：針灸 RCT＋fMRI**（真／假針各 15 人；Front Neurol 2026-10-06） | 12 周每週 3 次。真針組 PSQI、MoCA、MMSE 改善顯著大於假針；睡眠改善與認知改善呈負相關（r=−0.536）。影像見左側距狀溝 ALFF、小腦蚓部 VI ReHo 改變，並與 MoCA 改善相關。樣本細、隨訪短 | 記憶下降兼失眠長者，針灸或可同時輔助睡眠與認知，但證據屬初步；須排除急症／進展性痴呆，並與家人說明仍需認知評估及生活作息管理 | [Frontiers 全文](https://www.frontiersin.org/journals/neurology/articles/10.3389/fneur.2026.1913478/full) |\n| **新增** | **血府逐瘀口服液治療原發性痛經：多中心雙盲安慰劑 RCT**（n=256；Front Med 2026-03-12） | 3 個月療程。主要終點平均疼痛 VAS 組間無顯著差異（校正差 −0.18，95% CI −0.67 至 0.31；P=0.463）。治療期止痛藥使用率低 9.2 個百分點，累計用量亦較少；不良事件相若、無嚴重事件 | 氣滯血瘀型痛經：勿承諾可明顯降低疼痛分數；或可作為減少 NSAID 用量嘅輔助討論，但仍以常規止痛及排除繼發性痛經為先。陰性主要終點須如實告知患者 | [Frontiers 全文](https://www.frontiersin.org/journals/medicine/articles/10.3389/fmed.2026.1724529/full) |\n\n### 三、西醫／國際快訊\n\n本地流感第 45 周 Flu Express 未出；抗流感藥敏感性無新公布，可睇返 11-09／11-10。\n\n### 四、今日給診所的整合提示\n1. **天晴極乾燥＋日夜溫差＋紅色火災危險警告**：外感、鼻敏感、喘咳、皮膚乾燥增多；潤燥固表、保暖補水，並提醒郊外慎火。  \n2. **流感無新重症公布，急症科流感樣症狀已回基線，但整體監測仍以第 44 周為準、高於基線**：警示徵象即轉急症；查疫苗史。  \n3. **科研【新增】5 篇**：膝痹輸刺電針、偏頭痛針灸、帕金森芪黃針有較強對照證據；血府逐瘀痛經主要終點陰性——一律作輔助選項，非替代急症西醫處理。"
+    },
+    {
+      "heading": "hk_news",
+      "body": "- [西貢單位失竊約 24.5 萬元手錶及耳環](https://www.thestandard.com.hk/news/article/348128/Morning-Recap-November-11-2026) — 62 歲女事主報案，案發周二晚\n- [漁護署加強城門隧道轉車站及加德士道一帶巡查及捕捉猴子](https://www.thestandard.com.hk/news/article/348128/Morning-Recap-November-11-2026) — 近月接獲多宗滋擾投訴\n- [上水男工卸貨時墮車受傷](https://www.thestandard.com.hk/news/article/348128/Morning-Recap-November-11-2026) — 52 歲男子今早從中型貨車墮下\n- [紅磡海濱兩名酒店住客酒後爭執墮海獲救](https://www.thestandard.com.hk/news/article/348128/Morning-Recap-November-11-2026) — 凌晨事故，兩人已被救起"
+    },
+    {
+      "heading": "world_news",
+      "body": "- [美方牽頭俄烏在阿布扎比展開九個月來首次和談](https://www.theguardian.com/world/live/2026/nov/10/ukraine-russia-war-us-talks-abu-dhabi-europe-latest-news-updates) — 美國國務卿魯比奧稱首日「頗有成效」，但表明協議並非即將達成\n- [魯比奧稱現階段毋須對伊朗展開大規模軍事行動](https://www.thestandard.com.hk/news/article/348128/Morning-Recap-November-11-2026) — 指經濟制裁與海上封鎖已見效\n- [美軍人員在英國因涉嫌為俄羅斯從事間諜活動被捕](https://www.thestandard.com.hk/news/article/348128/Morning-Recap-November-11-2026) — 英國警方周二公布\n- [美股下跌；通脹數據偏高加劇加息憂慮，Nvidia 股價續挫](https://www.thestandard.com.hk/news/article/348128/Morning-Recap-November-11-2026) — 兩日累計市值蒸發逾 4,700 億美元（報道數字）"
+    },
+    {
+      "heading": "trending",
+      "body": "- **熱話**：[大埔太和商場行人路拍到老鼠伏地不動](https://hk.on.cc/hk/bkn/cnt/news/20261111/bkn-20261111002120644-1111_00822_001.html) — 繼近日多區鼠患片段後再成網民討論\n- **熱話**：[黃仁勳外遇風波擴大，報道指女方在新加坡被問話，並牽涉芯片出口數字差距](https://www.thestandard.com.hk/news/article/348128/Morning-Recap-November-11-2026) — 科技股與本地晨早新聞焦點\n- **話題**：[沖繩潛水店涉非法聘用外籍教練，包括香港及台灣人士被起訴](https://www.thestandard.com.hk/news/article/348128/Morning-Recap-November-11-2026) — 外遊相關討論\n- **話題**：天文台火災危險警告維持紅色（極高）— 天晴乾燥，山野及拜祭地點成為社交討論"
+    }
+  ],
+  "links": [
+    {
+      "label": "天文台本港天氣預報",
+      "url": "https://www.weather.gov.hk/hko/textonly/v2/forecast/localc.htm"
+    },
+    {
+      "label": "天文台九天天氣預報",
+      "url": "https://www.hko.gov.hk/textonly/v2/forecast/nday.htm"
+    },
+    {
+      "label": "天氣稿第025號（11月11日）",
+      "url": "https://www.info.gov.hk/gia/wr/202611/11/P2026111100081.htm"
+    },
+    {
+      "label": "環保署 AQHI（08:30）",
+      "url": "https://www.info.gov.hk/gia/api/202611/11/P2026111100151.htm"
+    },
+    {
+      "label": "急症科傳染病症狀監測",
+      "url": "https://www.chp.gov.hk/tc/statistics/data/10/26/44/601/495.html"
+    },
+    {
+      "label": "COVID-19 & Flu Express Week 44",
+      "url": "https://www.chp.gov.hk/files/pdf/covid_flux_week44_5_11_2026_eng.pdf"
+    },
+    {
+      "label": "季節性流感專頁",
+      "url": "https://www.chp.gov.hk/tc/features/14843.html"
+    },
+    {
+      "label": "膝骨關節炎輸刺電針RCT",
+      "url": "https://www.frontiersin.org/journals/medicine/articles/10.3389/fmed.2026.1864999/full"
+    },
+    {
+      "label": "無先兆偏頭痛針灸JAMA RCT",
+      "url": "https://jamanetwork.com/journals/jamanetworkopen/fullarticle/2844379"
+    },
+    {
+      "label": "芪黃針帕金森RCT",
+      "url": "https://doi.org/10.1002/mds.70343"
+    },
+    {
+      "label": "aMCI睡眠障礙針灸fMRI RCT",
+      "url": "https://www.frontiersin.org/journals/neurology/articles/10.3389/fneur.2026.1913478/full"
+    },
+    {
+      "label": "血府逐瘀口服液痛經RCT",
+      "url": "https://www.frontiersin.org/journals/medicine/articles/10.3389/fmed.2026.1724529/full"
+    },
+    {
+      "label": "The Standard Morning Recap November 11",
+      "url": "https://www.thestandard.com.hk/news/article/348128/Morning-Recap-November-11-2026"
+    }
+  ]
+}
