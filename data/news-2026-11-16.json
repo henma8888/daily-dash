@@ -1,0 +1,129 @@
+{
+  "date": "2026-11-16",
+  "bot": "新聞bot",
+  "title": "2026-11-16 香港流感・天氣・醫療朝早摘要",
+  "summary": "今早天文台上午 9 時 25°C、相對濕度 79%，紫外線 1（低）；觀塘 24°C；午夜至上午 9 時天文台最低 23.2°C。今日部分時間有陽光，日間最高約 27°C，稍後大致多雲、有一兩陣微雨。現時並無警告生效（昨日黃色火災危險警告已取消）。觀塘 AQHI 3（低／好）。流感無新增／更新，資料同 11-15（本季兒童嚴重仍 29 宗、死亡 3 宗；第 46 周速遞未出）。【新增】衞生署署長 11 月 13 日與中國藥品檢定研究院會面，深化中藥檢測及藥品規管合作。【新增】5 篇唔重複論文（特應性皮炎針灸艾灸 NMA、腰椎間盤突出艾灸聯合療法 NMA、化療周邊神經病變針灸 Meta、慢性坐骨神經痛針灸 Meta、帶狀疱疹後神經痛電針 JAMA RCT）。",
+  "forecast_3day": [
+    {
+      "date": "2026-11-16",
+      "label": "今日",
+      "high": 27,
+      "low": 23,
+      "text": "部分時間有陽光，稍後多雲微雨"
+    },
+    {
+      "date": "2026-11-17",
+      "label": "明日",
+      "high": 27,
+      "low": 24,
+      "text": "大致多雲，短暫陽光"
+    },
+    {
+      "date": "2026-11-18",
+      "label": "後日",
+      "high": 26,
+      "low": 21,
+      "text": "多雲有雨，氣溫顯著下降"
+    }
+  ],
+  "sections": [
+    {
+      "heading": "weather",
+      "body": "| 項目 | 資料 |\n| --- | --- |\n| 現時／今早 | 天文台上午 8 時 **24°C**、相對濕度 **84%**，紫外線指數 0.2（低）；觀塘 **23°C**。上午 9 時（09:02 報告）天文台 **25°C**、濕度 **79%**，間有陽光，紫外線指數 **1（低）**；觀塘 **24°C**，荃灣可觀 **22°C**。**午夜至上午 9 時天文台最低 23.2°C**；觀塘午夜至上午 8 時 40 分最低 **21.6°C** |\n| 今日天氣 | **部分時間有陽光**。日間最高約 **27°C**。稍後大致多雲，有一兩陣微雨。吹微風，漸轉吹和緩偏東風，稍後離岸風勢間中清勁。相對濕度預測約 **65–90%**；氣溫 **23–27°C** |\n| 今晚／展望 | 明日（星期二）大致多雲，早上有一兩陣雨，日間短暫時間有陽光，**24–27°C**。**星期三**北風增強，有幾陣雨，初時局部能見度較低，稍後氣溫顯著下降（**21–26°C**）。本週後期早晚清涼：周四約 18–22°C，周五約 16–19°C |\n| 警告／背景 | 一股偏東氣流正逐漸影響廣東東部沿岸。天文台現時**並無警告生效**（昨日生效的黃色火災危險警告已取消） |\n| 來源 | [天文台本港天氣預報（08:45）](https://www.weather.gov.hk/hko/textonly/v2/forecast/localc.htm)、[九天天氣預報（07:50）](https://www.hko.gov.hk/textonly/v2/forecast/ndayc.htm)、[天氣報告（09:02）](https://www.weather.gov.hk/textonly/v2/forecast/chinesewx2.htm)、[分區天氣](https://www.weather.gov.hk/hko/textonly/v2/forecast/text_readings_c.htm)、[生效警告](https://www.weather.gov.hk/textonly/warning/warnc.htm) |"
+    },
+    {
+      "heading": "aqhi_kwun_tong",
+      "body": "| 項目 | 資料 |\n| --- | --- |\n| 觀塘 AQHI | **3**（**低／好**）（環保署 08:30 公布，數據截至 08:00）。對比昨日：昨早曾為 2（低），午後升至 **4（中）**；今早回落至「低」 |\n| AQHI 分級（必須參考） | **1–3 低（好）／4–6 中（普通）／7 高／8–10 甚高／10+ 嚴重**（EPD 官方分級） |\n| 其他一般監測站 | 全數為 **1–3（低）**；荃灣、將軍澳、元朗、東涌、大埔、沙田、北區為 **2**，塔門 **1**，略佳；其餘市區一般站多為 3 |\n| 路邊監測站 | 銅鑼灣、中環、旺角均 **3（低）** |\n| 預測 | 今日上／下午：一般及路邊監測站均為**低至中**。達「中」時一般可如常活動，心臟病／呼吸系統疾病並出現症狀者應考慮減少戶外體力消耗 |\n| 診所提示（藍田／觀塘） | 今早屬低風險，一般可如常活動。星期三起轉涼、有雨，外感、喘證、痹證及長者宜提前添衣，勿因今日回暖減衣過度 |\n| 來源 | [環保署 AQHI（11月16日 08:30）](https://www.info.gov.hk/gia/api/202611/16/P2026111600175p.htm)、[環保署 AQHI](https://www.aqhi.gov.hk/) |"
+    },
+    {
+      "heading": "flu",
+      "body": "對比 11-15：衞生防護中心今日無新一宗兒童／成人重症或死亡新聞稿；第 46 周《2019冠狀病毒病及流感速遞》仍未出版。**流感無新增／更新，資料同昨日，可睇返 11-15**。\n\n| 標記 | 項目 | 最新官方情況 |\n| --- | --- | --- |\n| （快照） | 本季兒童嚴重個案 | 累計仍為 **29** 宗（死亡 **3** 宗；其中 11 月 13 日公布的第三宗死亡，為 10 月 29 日已列的嚴重個案惡化，並非新發重症）。臨床狀況仍以 11 月 13 日傍晚公報為準：已康復出院 22 宗、情況穩定 2 宗、情況危殆 2 宗、死亡 3 宗。詳情可[睇返 11-15](https://henma8888.github.io/daily-dash/) |\n| （快照） | 第 45 周監測（未更新） | 陽性率 **5.92%**（基線 4.94%），仍以甲型 H1 為主。入院 0.31／萬人；爆發 34 宗。成人重症第 45 周 26 宗（死亡 17）。詳情睇返 11-13／11-15 |\n| 來源 |  | [一名早前公布的兒童流感嚴重個案患者病逝（11月13日）](https://www.info.gov.hk/gia/general/202611/13/P2026111300611.htm)、[2019冠狀病毒病及流感速遞第45周（中文）](https://www.chp.gov.hk/files/pdf/covid_flux_week45_12_11_2026_chi.pdf)、[COVID-19 & Flu Express Week 45](https://www.chp.gov.hk/files/pdf/covid_flux_week45_12_11_2026_eng.pdf)、[定點診所求診比率](https://www.chp.gov.hk/tc/statistics/data/10/26/44/292/7105.html)、[季節性流感專頁](https://www.chp.gov.hk/tc/features/14843.html) |"
+    },
+    {
+      "heading": "medical",
+      "body": "對比 11-15：臨床／監管舊聞（中醫醫院 12 月 11 日擴展 24 小時住院、藥物及醫療器械監督管理中心條例草案、學校外展進度等）無變，可睇返 11-09／11-13。以下只列【新增】及今日氣候提示。星期一收錄 5 篇與近日簡報唔重複的論文。\n\n### 一、香港臨床／監管要點（中醫優先）\n\n| 標記 | 重點 | 內容與診所啟示 |\n| --- | --- | --- |\n| **新增** | 衞生署與中國藥品檢定研究院合作 | 11 月 13 日下午：衞生署署長林文健醫生與訪港的中國藥品檢定研究院（中檢院）院長安撫東會面，雙方同意在藥品監管、信息數智化及生物製品檢測專業能力建設等加強合作。中檢院長期為衞生署提供藥物及中藥檢測專業指導。署長重申《香港第一個五年規劃》及今年《施政報告》：善用政府中藥檢測中心，制定國際中醫藥標準。會面中亦介紹年內將成立的藥物及醫療器械監督管理中心（相關條例草案已於 11-12／11-13 簡報述及，可睇返）。診所啟示：關注往後中藥標準、檢測及註冊銜接的具體安排；日常仍以本港註冊中成藥及安全用藥為準 |\n| （日常） | 今日氣候相關 | 觀塘 AQHI 今早回落至**低（好）**，現時並無火災危險警告。星期三冷鋒抵達後氣溫顯著下降（周四約 18–22°C，周五約 16–19°C）：痹證、喘證、外感及長者勿因今日回暖減衣過度，宜提前添衣；稍後有一兩陣微雨，外出可備傘 |\n\n### 二、學術研究／同行評審（5 篇，均與 11-09 至 11-15 用過嘅文獻唔重複）\n\n每篇可直接打開［中文摘要 PDF］；亦可一次過下載［今日五篇合集］(https://henma8888.github.io/daily-dash/papers/2026-11-16/00-papers-2026-11-16-zh.pdf)。摘要並非論文全文，官方原文連結亦寫喺 PDF 內。第 1–4 篇有公開全文；第 5 篇要經出版社／機構權限。\n\n| 標記 | 研究 | 主要結果 | 中醫診所臨床 takeaway | 中文摘要PDF | 來源 |\n| --- | --- | --- | --- | --- | --- |\n| **新增** | **特應性皮炎：不同針灸與艾灸療法系統回顧＋網絡 Meta**（23 項 RCT，n=1,658；Syst Rev，2026-09-01） | 相對對照，針灸／艾灸可提高總有效率（OR **2.83**，95% CI 2.05–3.89）並降低 SCORAD（SMD **−0.24**，−0.37 至 −0.11）。網絡 Meta 中艾灸、埋線及火針排序較前，艾灸潛在效益最大；惟部分試驗樣本小、依賴間接證據，作者強調屬初步結果，不能視為已證明優勝 | 濕瘡／AD 可將艾灸、火針或埋線作為外用藥及皮膚護理的輔助討論，不能取代皮膚科評估或中重度系統治療。勿用排序承諾「艾灸最有效」。急性滲出、感染處不宜灸或濫刺 | [特應性皮炎針灸NMA](https://henma8888.github.io/daily-dash/papers/2026-11-16/01-acupuncture-ad-nma.pdf) | [Springer 全文](https://link.springer.com/article/10.1186/s13643-026-03314-7)、[DOI 10.1186/s13643-026-03314-7](https://doi.org/10.1186/s13643-026-03314-7) |\n| **新增** | **腰椎間盤突出：艾灸聯合療法網絡 Meta**（50 項 RCT，n=4,399；Front Neurol，2026-05-14） | 相對常規治療：艾灸＋常規或推拿可改善 JOA（MD **11.93**／**7.81**，低至中等質量）；艾灸＋針灸或推拿可改善 ODI（MD **−10.11**／**−6.52**）及 VAS（MD **−1.99**／**−2.20**，極低至低質量）；艾灸＋推拿治癒率 RR **2.45**（中等質量）。偏倚、安全性報告及隨訪仍不足 | 腰痛／LDH 在排除紅旗徵後，可討論艾灸聯合推拿或針灸作為保守治療輔助。不能承諾可避免手術；馬尾症狀須即時轉急症／骨科 | [腰椎間盤突出艾灸NMA](https://henma8888.github.io/daily-dash/papers/2026-11-16/02-moxibustion-ldh-nma.pdf) | [Frontiers 全文](https://www.frontiersin.org/journals/neurology/articles/10.3389/fneur.2026.1809677/full)、[PMC 13215928](https://pmc.ncbi.nlm.nih.gov/articles/PMC13215928/)、[DOI 10.3389/fneur.2026.1809677](https://doi.org/10.3389/fneur.2026.1809677) |\n| **新增** | **化療周邊神經病變：針灸系統回顧＋Meta＋試驗序貫分析**（40 項 RCT，n=2,496；J Pain Res，2026-09-18） | 針灸單獨或聯合干預可改善 FACT-Ntx（MD **−1.43**）及臨床有效率（RR **1.74**），並改善神經傳導速度及波幅；最差疼痛及 QST 未見顯著效應。GRADE 評為**極低**；TSA 對部分結局已越過監測界線。合谷、足三里最常用 | 腫瘤相關手足麻木／痺證可將針灸作為支持治療輔助，並與腫瘤科協調。勿承諾必能止痛。證據極低，須如實告知局限 | [化療神經痛針灸Meta](https://henma8888.github.io/daily-dash/papers/2026-11-16/03-acupuncture-cipn-meta.pdf) | [DovePress 全文](https://www.dovepress.com/acupuncture-for-chemotherapy-induced-peripheral-neuropathy-a-systemati-peer-reviewed-fulltext-article-JPR)、[PubMed 42780628](https://pubmed.ncbi.nlm.nih.gov/42780628/)、[PMC 13597661](https://pmc.ncbi.nlm.nih.gov/articles/PMC13597661/) |\n| **新增** | **腰椎間盤突出所致慢性坐骨神經痛：針灸系統回顧＋Meta**（11 項 RCT，n=868；Front Med，2026-01-22） | 相對對照，針灸降低下肢疼痛 VAS（SMD **−1.08**，95% CI −1.41 至 −0.75），假針／常規護理等亞組方向一致；7 項（n=621）顯示 ODI 改善（SMD **−0.57**）。多數試驗在中國進行，方法學限制須謹慎詮釋 | 慢性腰腿痛／坐骨神經痛在排除紅旗徵後，可將針灸納入多學科止痛及康復的輔助討論，不宜延遲有手術指徵者的轉介 | [坐骨神經痛針灸Meta](https://henma8888.github.io/daily-dash/papers/2026-11-16/04-acupuncture-sciatica-meta.pdf) | [Frontiers 全文](https://www.frontiersin.org/journals/medicine/articles/10.3389/fmed.2026.1689124/full)、[DOI 10.3389/fmed.2026.1689124](https://doi.org/10.3389/fmed.2026.1689124) |\n| **新增** | **帶狀疱疹後神經痛：電針多中心假電針對照 RCT**（n=448；JAMA Neurol，2026-05-26） | 4 周共 20 次；取支溝、陽陵泉及痛區圍刺。公開摘要及評論引述：電針組 NRS-11 下降約 **1.52** 分、假電針約 **0.99** 分（校正差約 **0.53**，P<0.001）；疼痛減少 ≥30% 約 **46.7%** 對 **24.3%**。差異自第 2 周顯著，維持至第 8 周；不良事件多屬輕微。組間差或小於部分文獻的最小臨床重要差異（約 1.5 分）。精確數字請以 JAMA 原文為準 | 蛇串瘡後遺神經痛可將電針作為藥物以外的輔助討論。試驗質量較高，但組間平均差值不大，勿承諾大幅優於安慰劑的減痛；4 周 20 次較密，須按診所可及性調整預期 | [帶狀疱疹後神經痛電針](https://henma8888.github.io/daily-dash/papers/2026-11-16/05-electroacupuncture-phn-jama.pdf) | [JAMA Neurology](https://jamanetwork.com/journals/jamaneurology/fullarticle/2849572)、[DOI 10.1001/jamaneurol.2026.1443](https://doi.org/10.1001/jamaneurol.2026.1443) |"
+    },
+    {
+      "heading": "hk_news",
+      "body": "- [無紙證券市場今日起實施，證監會：實名抽新股不再收到實物股票](https://news.rthk.hk/rthk/ch/component/k2/1877930-20261116.htm) — 投資者可以電子方式實名持股；現有實物股票可保留，但買賣或轉讓前須先無紙化。證監會提醒提防騙徒冒充經紀、銀行或職員索取個人資料\n- [港交所宣布推出香港交易所離岸人民幣債券指數](https://news.rthk.hk/rthk/ch/component/k2/1877929-20261116.htm) — 港台今早報道：為香港首個追蹤在港發行點心債的基準指數\n- [新世界發展建議按「1供11」方式供股集資約 249 億元](https://news.rthk.hk/rthk/ch/component/k2/1877895-20261115.htm) — 昨日公布，股份今日恢復交易；須待獨立股東批准等條件後方可作實"
+    },
+    {
+      "heading": "world_news",
+      "body": "- [克宮：俄中美領導人三方會晤將於周四在深圳舉行](https://news.rthk.hk/rthk/ch/component/k2/1877845-20261114.htm) — 適逢本周深圳 APEC；[白宮較早前亦有相關表述](https://news.rthk.hk/rthk/ch/component/k2/1877782-20261114.htm)。安排仍應以後續官方公布為準\n- [愛沙尼亞宣布將於 12 月 1 日起關閉與俄羅斯所有邊境口岸](https://news.rthk.hk/rthk/ch/component/k2/1877914-20261116.htm) — 外長指有證據顯示俄羅斯軍事情報機構涉嫌下令破壞當地一間國防工業企業\n- [美國火神火箭未能將亞馬遜 40 顆衛星送入預定軌道](https://news.rthk.hk/rthk/ch/component/k2/1877919-20261116.htm) — 聯合發射聯盟：火箭升空約 10 分鐘後出現異常，事故原因仍在調查"
+    },
+    {
+      "heading": "trending",
+      "body": "- **熱話**：[警方「銳眼計劃」人工智能人臉識別功能今日啟用](https://www.hkcd.com/hkcdweb/content/2026/11/15/content_8785432.html) — 報道指主要用於刑事偵查及尋找失蹤人士，使用前須經審批\n- **熱話**：[據報黃仁勳與身邊人士討論重返 Nvidia 擔任行政總裁的可能性](https://news.rthk.hk/rthk/ch/component/k2/1877921-20261116.htm) — 港台今早引述《金融時報》；屬傳聞，仍待公司或當事人證實\n- **話題**：[天文台：星期三北風增強，稍後氣溫顯著下降，本週後期早晚清涼](https://www.weather.gov.hk/hko/textonly/v2/forecast/localc.htm) — 周五最低可降至約 16°C，宜提前添衣"
+    }
+  ],
+  "links": [
+    {
+      "label": "天文台本港天氣預報",
+      "url": "https://www.weather.gov.hk/hko/textonly/v2/forecast/localc.htm"
+    },
+    {
+      "label": "天文台九天天氣預報",
+      "url": "https://www.hko.gov.hk/textonly/v2/forecast/ndayc.htm"
+    },
+    {
+      "label": "天氣報告（09:02）",
+      "url": "https://www.weather.gov.hk/textonly/v2/forecast/chinesewx2.htm"
+    },
+    {
+      "label": "環保署 AQHI（08:30）",
+      "url": "https://www.info.gov.hk/gia/api/202611/16/P2026111600175p.htm"
+    },
+    {
+      "label": "一名早前公布的兒童流感嚴重個案患者病逝（11月13日）",
+      "url": "https://www.info.gov.hk/gia/general/202611/13/P2026111300611.htm"
+    },
+    {
+      "label": "2019冠狀病毒病及流感速遞第45周（中文）",
+      "url": "https://www.chp.gov.hk/files/pdf/covid_flux_week45_12_11_2026_chi.pdf"
+    },
+    {
+      "label": "COVID-19 & Flu Express Week 45",
+      "url": "https://www.chp.gov.hk/files/pdf/covid_flux_week45_12_11_2026_eng.pdf"
+    },
+    {
+      "label": "衞生署與中國藥品檢定研究院會面（11月13日）",
+      "url": "https://www.info.gov.hk/gia/general/202611/13/P2026111300446.htm"
+    },
+    {
+      "label": "特應性皮炎針灸艾灸NMA",
+      "url": "https://doi.org/10.1186/s13643-026-03314-7"
+    },
+    {
+      "label": "腰椎間盤突出艾灸聯合療法NMA",
+      "url": "https://www.frontiersin.org/journals/neurology/articles/10.3389/fneur.2026.1809677/full"
+    },
+    {
+      "label": "化療周邊神經病變針灸Meta",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/42780628/"
+    },
+    {
+      "label": "慢性坐骨神經痛針灸Meta",
+      "url": "https://www.frontiersin.org/journals/medicine/articles/10.3389/fmed.2026.1689124/full"
+    },
+    {
+      "label": "帶狀疱疹後神經痛電針JAMA RCT",
+      "url": "https://jamanetwork.com/journals/jamaneurology/fullarticle/2849572"
+    },
+    {
+      "label": "今日五篇論文中文摘要合集 PDF",
+      "url": "https://henma8888.github.io/daily-dash/papers/2026-11-16/00-papers-2026-11-16-zh.pdf"
+    },
+    {
+      "label": "無紙證券市場今日起實施",
+      "url": "https://news.rthk.hk/rthk/ch/component/k2/1877930-20261116.htm"
+    },
+    {
+      "label": "港交所離岸人民幣債券指數",
+      "url": "https://news.rthk.hk/rthk/ch/component/k2/1877929-20261116.htm"
+    },
+    {
+      "label": "愛沙尼亞將關閉與俄羅斯邊境口岸",
+      "url": "https://news.rthk.hk/rthk/ch/component/k2/1877914-20261116.htm"
+    }
+  ]
+}
